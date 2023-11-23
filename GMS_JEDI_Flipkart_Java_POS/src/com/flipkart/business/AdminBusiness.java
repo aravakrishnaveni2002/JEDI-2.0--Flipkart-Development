@@ -2,35 +2,41 @@
  * 
  */
 package com.flipkart.business;
+import com.flipkart.bean.*;
+import java.util.*;
 
 /**
  * 
  */
 public class AdminBusiness {
 	
-	public static void viewPendingGymRequests() {
+	public List<GymCenter> viewPendingGymRequests() {
 		System.out.println("All pending Gym requests");
+		return new ArrayList<GymCenter>();
 	}
 	
-	public static void viewPendingGymOwnerRequests() {
+	public List<GymOwner> viewPendingGymOwnerRequests() {
 		System.out.println("All pending GymOwner requests");
+		return new ArrayList<GymOwner>();
 	}
 	
-    public static boolean approveGymOwnerRegistration(){
+    public boolean approveGymOwnerRegistration(int gymOwnerId){
         System.out.println("GymOwner Approved Successfully");
         return true;
     }
     
-    public static boolean approveGymRegistration(){
+    public boolean approveGymRegistration(int gymCenterId){
         System.out.println("Gym Approved Successfully");
         return true;
     }
     
-    public static void viewAllGymOnwers() {
+    public List<GymOwner> viewAllGymOnwers() {
     	System.out.println("All GymOwners");
+    	return new ArrayList<GymOwner>();
     }
     
-    public static void viewAllGyms() {
+    public List<GymCenter> viewAllGyms() {
     	System.out.println("All Gyms");
+    	return new ArrayList<GymCenter>();
     }
 }

@@ -14,6 +14,7 @@ public class GymOwner {
 	private String email;
 	private long phone;
 	private String gstNumber;
+	private boolean isApproved;
 
 	public int getId() {
 		return id;
@@ -61,6 +62,14 @@ public class GymOwner {
 
 	public void setGstNumber(String gstNumber) {
 		this.gstNumber = gstNumber;
+	}
+	
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
 	}
 
 }

@@ -9,12 +9,12 @@ import com.flipkart.bean.Slot;
  */
 public class SlotBooking {
 	
-	public static boolean isAvailable(Slot slot) {
+	public boolean isAvailable(Slot slot) {
 		System.out.println("Checking for avialiability");
 		return true;
 	}
 
-	public static boolean isWaiting() {
+	public boolean isWaiting() {
 		System.out.println("Slots Booked, redirecting to Waiting list");
 		return true;
 	}

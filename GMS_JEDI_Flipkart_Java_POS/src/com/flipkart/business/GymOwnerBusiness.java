@@ -28,11 +28,6 @@ public class GymOwnerBusiness {
 		return true;
 	}
 
-	public boolean registerOwner() {
-		System.out.println("Waiting for approval");
-		return true;
-	}
-
 	public void addSlots(int gymCenterId,String date,Slot slot) {
 		System.out.println("Slot added successfully");
 		return;

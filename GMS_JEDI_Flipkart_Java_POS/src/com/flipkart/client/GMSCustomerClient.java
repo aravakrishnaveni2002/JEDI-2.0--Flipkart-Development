@@ -7,7 +7,7 @@ import com.flipkart.business.CustomerBusiness;
 /**
  * 
  */
-public class CustomerClient {
+public class GMSCustomerClient {
 
 	/**
 	 * @param args

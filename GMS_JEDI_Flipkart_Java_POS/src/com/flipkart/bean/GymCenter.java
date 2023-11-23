@@ -12,6 +12,7 @@ public class GymCenter {
 	private String location;
 	private int slotId;
 	private int noOfSeats;
+	private boolean isApproved;
 
 	public int getId() {
 		return id;
@@ -45,6 +46,12 @@ public class GymCenter {
 		this.noOfSeats = noOfSeats;
 	}
 	
-	
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
 	
 }
