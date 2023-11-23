@@ -6,7 +6,7 @@ package com.flipkart.bean;
 /**
  * 
  */
-public class Center {
+public class GymCenter {
 	
 	private int id;
 	private String location;

@@ -6,28 +6,30 @@ package com.flipkart.bean;
 /**
  * 
  */
-public class Seat {
+public class BookedSlot {
 	
-	private int id;
-	private boolean isBooked;
+	
+	private int gymCenterId;
 	private int slotId;
 	private int userId;
-
-	public int getId() {
-		return id;
+	private String date;
+	
+	public int getGymCenterId() {
+		return gymCenterId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setGymCenterId(int gymCenterId) {
+		this.gymCenterId = gymCenterId;
 	}
 
-	public boolean isBooked() {
-		return isBooked;
+	public String getDate() {
+		return date;
 	}
 
-	public void setBooked(boolean isBooked) {
-		this.isBooked = isBooked;
+	public void setDate(String date) {
+		this.date = date;
 	}
+
 
 	public int getSlotId() {
 		return slotId;

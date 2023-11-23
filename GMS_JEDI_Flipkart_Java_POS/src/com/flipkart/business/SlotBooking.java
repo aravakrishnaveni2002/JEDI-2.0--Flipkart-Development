@@ -2,14 +2,15 @@
  * 
  */
 package com.flipkart.business;
+import com.flipkart.bean.Slot;
 
 /**
  * 
  */
 public class SlotBooking {
 	
-	public static boolean isAvailable() {
-		System.out.println("Slots are Available");
+	public static boolean isAvailable(Slot slot) {
+		System.out.println("Checking for avialiability");
 		return true;
 	}
 
@@ -18,8 +19,13 @@ public class SlotBooking {
 		return true;
 	}
 
-	public static boolean bookSlot() {
+	public boolean bookSlot(Slot slot, String date,int userId) {
 		System.out.println("Slot booked Successfully");
+		return true;
+	}
+	
+	public boolean cancelSlot(Slot slot, String date,int userId) {
+		System.out.println("Slot cancelled Successfully");
 		return true;
 	}
 }

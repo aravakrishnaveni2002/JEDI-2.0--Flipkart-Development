@@ -13,7 +13,6 @@ public class Slot {
 	
 	private int id;
 	private String time;
-	private int noOfBookedSeats;
 	private Queue<Integer> waitingList;
 
 	public Slot() {
@@ -34,18 +33,7 @@ public class Slot {
 
 	public void setTime(String time) {
 		this.time = time;
-	}
-
-	public int getNoOfBookedSeats() {
-		return noOfBookedSeats;
-	}
-
-	public void setNoOfBookedSeats(int noOfBookedSeats) {
-		this.noOfBookedSeats = noOfBookedSeats;
-	}
-	
-	
-	
+	}	
 	
 	
 }
