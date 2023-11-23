@@ -25,4 +25,9 @@ public class CustomerBusiness {
         return true;
     }
 
+    public static void viewBookings(){
+        System.out.println("Listing all Bookings");
+        return;
+    }
+
 }
