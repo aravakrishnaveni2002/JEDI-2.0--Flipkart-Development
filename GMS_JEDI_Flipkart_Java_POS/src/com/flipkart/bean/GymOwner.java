@@ -7,9 +7,7 @@ package com.flipkart.bean;
  * 
  */
 public class GymOwner {
-<<<<<<< Updated upstream
-=======
-	
+
 	private int id;
 	private String name;
 	private String address;
@@ -64,5 +62,5 @@ public class GymOwner {
 	public void setGstNumber(String gstNumber) {
 		this.gstNumber = gstNumber;
 	}
->>>>>>> Stashed changes
+
 }
