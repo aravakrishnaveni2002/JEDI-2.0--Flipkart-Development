@@ -9,10 +9,11 @@ package com.flipkart.bean;
 public class GymCenter {
 	
 	private int id;
+	private String name;
 	private String location;
-	private int slotId;
 	private int noOfSeats;
 	private boolean isApproved;
+	private String gymOwnerEmail;
 
 	public int getId() {
 		return id;
@@ -21,6 +22,14 @@ public class GymCenter {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getLocation() {
 		return location;
@@ -28,14 +37,6 @@ public class GymCenter {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public int getSlotId() {
-		return slotId;
-	}
-
-	public void setSlotId(int slotId) {
-		this.slotId = slotId;
 	}
 
 	public int getNoOfSeats() {
@@ -53,5 +54,14 @@ public class GymCenter {
 	public void setApproved(boolean isApproved) {
 		this.isApproved = isApproved;
 	}
+	
+	public String getGymOwnerEmail() {
+		return gymOwnerEmail;
+	}
+
+	public void setGymOwnerEmail(String gymOwnerEmail) {
+		this.gymOwnerEmail = gymOwnerEmail;
+	}
+
 	
 }

@@ -27,4 +27,8 @@ public class UserBusiness {
 	public void logout(User user) {
 		System.out.println("LoggedOut in successfully");
 	}
+	
+	public void registerUser() {
+		System.out.println("User registered");
+	}
 }
