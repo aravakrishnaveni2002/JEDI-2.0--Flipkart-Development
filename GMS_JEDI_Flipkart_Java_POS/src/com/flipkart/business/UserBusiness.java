@@ -40,8 +40,34 @@ public class UserBusiness {
 	public void registerCustomer(Customer customer) {
 		System.out.println("Customer registered");
 	}
-	
-	
+
+	public User getAdmin()
+	{
+		return u1;
+	}
+
+	public List<User> viewAllCustomers()
+	{
+		List<User>allCustomers = new ArrayList<>();
+		for(int i=0;i<userList.size();i++)
+		{
+			if(userList.get(i).getRoleId() == 3)
+				allCustomers.add(userList.get(i));
+		}
+		return allCustomers;
+	}
+
+	public List<User> viewAllGymOwners()
+	{
+		List<User>allGymOwners = new ArrayList<>();
+		for(int i=0;i<userList.size();i++)
+		{
+			if(userList.get(i).getRoleId() == 2)
+				allGymOwners.add(userList.get(i));
+		}
+		return allGymOwners;
+	}
+
 	public void registerGymOwner(GymOwner gymOwner) {
 		System.out.println("GymOwner registered");
 	}
