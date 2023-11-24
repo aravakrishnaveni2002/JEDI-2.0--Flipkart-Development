@@ -13,6 +13,16 @@ public class BookedSlot {
 	private int slotId;
 	private int userId;
 	private String date;
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	private String userEmail;
 	
 	public int getGymCenterId() {
 		return gymCenterId;

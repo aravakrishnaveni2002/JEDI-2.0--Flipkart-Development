@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.flipkart.client;
+package com.flipkart.client.*;
 import com.flipkart.business.*;
 import com.flipkart.bean.*;
 import java.util.*;
@@ -44,7 +44,15 @@ public class GMSCustomerClient {
 	}
 	
 	public void viewAllBookedSlots(String customerEmail) {
-		
+		List<BookedSlot> bookedSlots= customerBusiness.viewAllBookings(customerEmail);
+		for(BookedSlot bs: bookedSlots) {
+			System.out.printf("%-8s\t", bs.getSlotId());
+			System.out.printf("%-8s\t", bs.getDate());
+			System.out.printf("%-8s\t", bs.getUserId());
+			System.out.printf("%-8s\t", bs.getGymCenterId());
+			System.out.printf("%-8s\t", bs.getUserEmail());
+			System.out.println();
+		}
 	}
 	
 	public void customerPage(Scanner sc, String customerEmail) {
