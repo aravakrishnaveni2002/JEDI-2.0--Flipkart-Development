@@ -35,6 +35,7 @@ public class UserBusiness {
 		userList.add(u2);
 		userList.add(u3);
 
+
 	}
 	public void registerCustomer(Customer customer) {
 		System.out.println("Customer registered");
