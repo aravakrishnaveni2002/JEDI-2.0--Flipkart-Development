@@ -15,7 +15,7 @@ public class GMSApplicationClient {
 	private static boolean check_Admin_Authentication(UserBusiness userBusiness, String username, String password)
 	{
 		User admin = userBusiness.getAdmin();
-		if(admin.getEmail() == username && admin.getPassword() == password)
+		if(admin.getEmail().equals(username) && admin.getPassword().equals(password))
 			return true;
 		return false;
 	}
@@ -25,7 +25,7 @@ public class GMSApplicationClient {
 		List<User>customerList = userBusiness.viewAllCustomers();
 		for(int i=0;i<customerList.size();i++)
 		{
-			if(customerList.get(i).getEmail() == username && customerList.get(i).getPassword() == password)
+			if(customerList.get(i).getEmail().equals(username) && customerList.get(i).getPassword().equals(password))
 			{
 				return true;
 			}
@@ -38,7 +38,7 @@ public class GMSApplicationClient {
 		List<User>gymOwnerList = userBusiness.viewAllGymOwners();
 		for(int i=0;i<gymOwnerList.size();i++)
 		{
-			if(gymOwnerList.get(i).getEmail() == username && gymOwnerList.get(i).getPassword() == password)
+			if(gymOwnerList.get(i).getEmail().equals(username) && gymOwnerList.get(i).getPassword().equals(password))
 			{
 				return true;
 			}

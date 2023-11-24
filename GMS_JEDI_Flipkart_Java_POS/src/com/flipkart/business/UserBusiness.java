@@ -43,8 +43,10 @@ public class UserBusiness {
 
 	public User getAdmin()
 	{
+		System.out.println(userList);
 		for(int i=0;i<userList.size();i++)
 		{
+			//System.out.println(userList.get(i).getRoleId());
 			if(userList.get(i).getRoleId() == 1)
 				return userList.get(i);
 		}
