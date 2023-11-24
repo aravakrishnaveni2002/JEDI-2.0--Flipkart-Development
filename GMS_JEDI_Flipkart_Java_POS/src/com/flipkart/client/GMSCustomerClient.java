@@ -1,9 +1,11 @@
 /**
  * 
  */
-package com.flipkart.client.*;
+package com.flipkart.client;
 import com.flipkart.business.*;
 import com.flipkart.bean.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -13,7 +15,6 @@ public class GMSCustomerClient {
 
 	CustomerBusiness customerBusiness = new CustomerBusiness();
 	Customer customer = new Customer();
-	
 	
 	public void customerRegistration(Scanner sc) {
 		System.out.println("Enter your name: ");
@@ -36,10 +37,19 @@ public class GMSCustomerClient {
 	}
 	
 	public void bookSlot(Scanner sc,String customerEmail) {
-		
+		System.out.println("Enter Gym ID:");
+		int gymCentreId = sc.nextInt();
+		System.out.println("Enter Slot ID:");
+		int slotId = sc.nextInt();
+
+		LocalDateTime currentTime = LocalDateTime.now();
+		DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		String formattedDate = currentTime.format(myFormat);
+		customerBusiness.bookSlot(gymCentreId,slotId,formattedDate,customerEmail);
+
 	}
 	
-	public void cancelBookedSlot(String customerEmail) {
+	public void cancelBookedSlot(Scanner sc,String customerEmail) {
 		
 	}
 	
@@ -69,7 +79,7 @@ public class GMSCustomerClient {
 				bookSlot(sc,customerEmail);
 				break;
 			case 2:
-				cancelBookedSlot(customerEmail);
+				cancelBookedSlot(customerEmail,slotId);
 				break;
 			case 3:
 				viewAllBookedSlots(customerEmail);

@@ -48,21 +48,29 @@ public class CustomerBusiness {
 		System.out.println("Listing all Slots in  GymCenter");
 		return new ArrayList<Slot>();
 	}
+	public boolean bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
+		BookedSlot b = isAlreadyBooked(slotId,customerEmail,date);
+		if(b != null) {
+			cancelSlot(b.getId(),customerEmail);
 
-	public boolean bookSlot(int gymCenterId,int slotId,String date,int customerId) {
-		if(isAlreadyBooked(slotId,customerId,date)) {
-			cancelSlot(slotId,customerId);
 		}
 		System.out.println("Slot booked");
 		return true;
 	}
 
-	private boolean isAlreadyBooked(int slotId,int customerId,String date) {
-		return true;
+
+	private BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date) {
+		List<BookedSlot> bookedSlots = viewAllBookings(customerEmail);
+		for(BookedSlot bst : bookedSlots){
+			if(bst.getDate().equals(date) && bst.getSlotId()== slotId){
+				return bst;
+			}
+		}
+		return null;
 	}
 
 
-	public boolean cancelSlot(int slotId,int customerId) {
+	public boolean cancelSlot(int slotId,String customerEmail) {
 		System.out.println("Cancelling Slot");
 		return true;
 	}
