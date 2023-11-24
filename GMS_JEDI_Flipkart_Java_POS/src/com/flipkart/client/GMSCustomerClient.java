@@ -35,7 +35,8 @@ public class GMSCustomerClient {
 //		UserBusiness.registerUser(user);
 //		UserBusiness.registerCustomer(customer);
 	}
-	
+
+
 	public void bookSlot(Scanner sc,String customerEmail) {
 		System.out.println("Enter Gym ID:");
 		int gymCentreId = sc.nextInt();
