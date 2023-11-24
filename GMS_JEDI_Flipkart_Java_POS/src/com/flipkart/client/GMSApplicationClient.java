@@ -56,6 +56,7 @@ public class GMSApplicationClient {
 		System.out.println("Enter your role: ");
 		String role = sc.next();
 		switch (role) {
+
 			case "Customer":
 				if(check_customer_authentication(username,password))
 				{
@@ -86,6 +87,21 @@ public class GMSApplicationClient {
 				else
 					System.out.println("Invalid Admin");
 				break;
+
+		case "Customer":
+
+			GMSCustomerClient customer = new GMSCustomerClient();
+			customer.customerPage(sc, username);
+			break;
+		case "GymOwner":
+			GMSGymOwnerClient gymOwner = new GMSGymOwnerClient();
+			gymOwner.gymOwnerPage(sc, username);
+			break;
+		case "Admin":
+			GMSAdminClient admin = new GMSAdminClient();
+			admin.adminPage(sc);
+			break;
+
 		}
 //		User user = new User();
 //		user.setEmail(username);
