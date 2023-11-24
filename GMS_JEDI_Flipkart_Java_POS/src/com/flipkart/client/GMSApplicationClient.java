@@ -5,28 +5,27 @@ package com.flipkart.client;
 import java.util.*;
 import com.flipkart.bean.*;
 import com.flipkart.client.*;
+import com.flipkart.business.*;
 
 /**
  * 
  */
 public class GMSApplicationClient {
 
-	UserBusiness user = new UserBusiness();
-
-	private boolean check_Admin_Authentication(String username, String password)
+	private static boolean check_Admin_Authentication(UserBusiness userBusiness, String username, String password)
 	{
-		User admin = user.getAdmin();
+		User admin = userBusiness.getAdmin();
 		if(admin.getEmail() == username && admin.getPassword() == password)
 			return true;
 		return false;
 	}
 
-	private boolean check_customer_authentication(String username, String password)
+	private static boolean check_customer_authentication(UserBusiness userBusiness, String username, String password)
 	{
-		List<User>customerList = user.viewAllCustomers();
+		List<User>customerList = userBusiness.viewAllCustomers();
 		for(int i=0;i<customerList.size();i++)
 		{
-			if(customerList.get(i).getEmail() == username && customerList.get(i).getPassword == password)
+			if(customerList.get(i).getEmail() == username && customerList.get(i).getPassword() == password)
 			{
 				return true;
 			}
@@ -34,12 +33,12 @@ public class GMSApplicationClient {
 		return false;
 	}
 
-	private boolean check_gymOwner_authentication(String username, String password)
+	private static boolean check_gymOwner_authentication(UserBusiness userBusiness, String username, String password)
 	{
-		List<User>gymOwnerList = user.viewAllGymOwners();
+		List<User>gymOwnerList = userBusiness.viewAllGymOwners();
 		for(int i=0;i<gymOwnerList.size();i++)
 		{
-			if(gymOwnerList.get(i).getEmail() == username && gymOwnerList.get(i).getPassword == password)
+			if(gymOwnerList.get(i).getEmail() == username && gymOwnerList.get(i).getPassword() == password)
 			{
 				return true;
 			}
@@ -49,6 +48,7 @@ public class GMSApplicationClient {
 
 	public static void login() {
 		Scanner sc = new Scanner(System.in);
+		UserBusiness userBusiness = new UserBusiness();
 		System.out.println("Enter your username: ");
 		String username = sc.next();
 		System.out.println("Enter your correct password: ");
@@ -58,7 +58,7 @@ public class GMSApplicationClient {
 		switch (role) {
 
 			case "Customer":
-				if(check_customer_authentication(username,password))
+				if(check_customer_authentication(userBusiness,username,password))
 				{
 					GMSCustomerClient customer = new GMSCustomerClient();
 					customer.customerPage(sc, username);
@@ -69,7 +69,7 @@ public class GMSApplicationClient {
 				}
 			    break;
 		    case "GymOwner":
-				if(check_gymOwner_authentication(username,password))
+				if(check_gymOwner_authentication(userBusiness,username,password))
 				{
 					GMSGymOwnerClient gymOwner = new GMSGymOwnerClient();
 					gymOwner.gymOwnerPage(sc, username);
@@ -80,28 +80,13 @@ public class GMSApplicationClient {
 				}
 				break;
 		    case "Admin":
-				if(check_Admin_Authentication(username,password)) {
+				if(check_Admin_Authentication(userBusiness,username,password)) {
 					GMSAdminClient admin = new GMSAdminClient();
 					admin.adminPage(sc);
 				}
 				else
 					System.out.println("Invalid Admin");
 				break;
-
-		case "Customer":
-
-			GMSCustomerClient customer = new GMSCustomerClient();
-			customer.customerPage(sc, username);
-			break;
-		case "GymOwner":
-			GMSGymOwnerClient gymOwner = new GMSGymOwnerClient();
-			gymOwner.gymOwnerPage(sc, username);
-			break;
-		case "Admin":
-			GMSAdminClient admin = new GMSAdminClient();
-			admin.adminPage(sc);
-			break;
-
 		}
 //		User user = new User();
 //		user.setEmail(username);

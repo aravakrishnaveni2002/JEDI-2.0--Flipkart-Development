@@ -8,6 +8,12 @@ package com.flipkart.bean;
  */
 public class BookedSlot {
 
+	private int id;
+	private int gymCenterId;
+	private int slotId;
+	private int userId;
+	private String date;
+	
 	public int getId() {
 		return id;
 	}
@@ -15,12 +21,6 @@ public class BookedSlot {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	private int id;
-	private int gymCenterId;
-	private int slotId;
-	private int userId;
-	private String date;
 
 	public String getUserEmail() {
 		return userEmail;

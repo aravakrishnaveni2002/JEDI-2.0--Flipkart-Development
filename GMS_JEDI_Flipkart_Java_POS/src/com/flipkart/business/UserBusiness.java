@@ -43,7 +43,12 @@ public class UserBusiness {
 
 	public User getAdmin()
 	{
-		return u1;
+		for(int i=0;i<userList.size();i++)
+		{
+			if(userList.get(i).getRoleId() == 1)
+				return userList.get(i);
+		}
+		return null;
 	}
 
 	public List<User> viewAllCustomers()

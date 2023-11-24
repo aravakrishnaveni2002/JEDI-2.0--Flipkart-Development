@@ -35,6 +35,8 @@ public class GMSCustomerClient {
 //		UserBusiness.registerUser(user);
 //		UserBusiness.registerCustomer(customer);
 	}
+	
+	
 
 
 	public void bookSlot(Scanner sc,String customerEmail) {
@@ -58,7 +60,7 @@ public class GMSCustomerClient {
 		for(int i=0;i<registeredBookings.size();i++)
 		{
 			BookedSlot obj = registeredBookings.get(i);
-			if(obj.getSlotId() == id)
+			if(obj.getId() == id)
 				customerBusiness.cancelSlot(id , customerEmail);
 		}
 	}
