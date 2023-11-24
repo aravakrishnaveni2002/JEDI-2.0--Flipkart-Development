@@ -88,10 +88,11 @@ public class GMSCustomerClient {
 				bookSlot(sc,customerEmail);
 				break;
 			case 2:
-				cancelBookedSlot(customerEmail,slotId);
+				cancelBookedSlot(sc,customerEmail);
 				break;
 			case 3:
 				viewAllBookedSlots(customerEmail);
+				break;
 			case 4:
 				GMSApplicationClient.mainPage();
 				break;
