@@ -70,9 +70,19 @@ public class CustomerBusiness {
 	}
 
 
-	public boolean cancelSlot(int slotId,String customerEmail) {
+	public boolean cancelSlot(int bookingId,String customerEmail) {
 		System.out.println("Cancelling Slot");
-		return true;
+		System.out.println("Cancelling Slot");
+		List<BookedSlot> bs = viewAllBookings(customerEmail);
+		for(int i=0;i<bs.size();i++)
+		{
+			if(bs.get(i).getId() == bookingId)
+			{
+				bookedSlotList.remove(bs.get(i));
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public List<BookedSlot> viewAllBookings(String email) {

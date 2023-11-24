@@ -49,8 +49,17 @@ public class GMSCustomerClient {
 
 	}
 	
-	public void cancelBookedSlot(Scanner sc,String customerEmail) {
-		
+	public void cancelBookedSlot(Scanner sc,String customerEmail)
+	{
+		List<BookedSlot>registeredBookings = customerBusiness.viewAllBookings(customerEmail);
+		System.out.println("Enter the slotId");
+		int id = sc.nextInt();
+		for(int i=0;i<registeredBookings.size();i++)
+		{
+			BookedSlot obj = registeredBookings.get(i);
+			if(obj.getSlotId() == id)
+				customerBusiness.cancelSlot(id , customerEmail);
+		}
 	}
 	
 	public void viewAllBookedSlots(String customerEmail) {
