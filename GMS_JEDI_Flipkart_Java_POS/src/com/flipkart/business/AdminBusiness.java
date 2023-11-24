@@ -98,11 +98,30 @@ public class AdminBusiness {
 	}
 	
     public boolean approveGymOwnerRegistration(int gymOwnerId){
+    	
+    	for(int i=0;i<pendingGymOwnerRequests.size();i++) {
+    		if(pendingGymOwnerRequests.get(i).getId() == gymOwnerId) {
+    			pendingGymOwnerRequests.get(i).setApproved(true);
+    			allApprovedGymOwners.add(pendingGymOwnerRequests.get(i));
+    			pendingGymOwnerRequests.remove(pendingGymOwnerRequests.get(i));
+    			break;
+    		}
+    	}
         System.out.println("GymOwner Approved Successfully");
         return true;
     }
     
     public boolean approveGymRegistration(int gymCenterId){
+    	
+    	for(int i=0;i<pendingGymRequests.size();i++) {
+    		if(pendingGymRequests.get(i).getId() == gymCenterId) {
+    			pendingGymRequests.get(i).setApproved(true);
+    			allApprovedGyms.add(pendingGymRequests.get(i));
+    			pendingGymRequests.remove(pendingGymRequests.get(i));
+    			break;
+    		}
+    	}
+
         System.out.println("Gym Approved Successfully");
         return true;
     }

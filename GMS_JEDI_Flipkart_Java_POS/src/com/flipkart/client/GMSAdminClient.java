@@ -31,20 +31,23 @@ public class GMSAdminClient {
 	public void viewPendingGymRequests() {
 		List<GymCenter> gyms = adminBusiness.viewPendingGymRequests();
 		for(GymCenter gymCenter: gyms) {
-			System.out.println(gymCenter.getName());
-			System.out.println(gymCenter.getLocation());
-			System.out.println(gymCenter.getNoOfSeats());
-			System.out.println(gymCenter.getGymOwnerEmail());
+			System.out.printf("%-8s\t", gymCenter.getId());
+			System.out.printf("%-8s\t", gymCenter.getName());
+			System.out.printf("%-8s\t", gymCenter.getLocation());
+			System.out.printf("%-8s\t", gymCenter.getNoOfSeats());
+			System.out.printf("%-8s\t", gymCenter.getGymOwnerEmail());
 			
 			if(gymCenter.isApproved())
 			{
-				System.out.println("Yes");
+				System.out.printf("%-8s\t", "Yes");
 			}
 			else
 			{
-				System.out.println("No");
+				System.out.printf("%-8s\t", "No");
 			}
+			System.out.println("");
 		}
+		System.out.println("-------------------------------------");
 	}
 	
 	public void viewPendingGymOwnerRequests() {
@@ -72,10 +75,11 @@ public class GMSAdminClient {
 	public void viewAllGymCenters() {
 		List<GymCenter> gyms = adminBusiness.viewAllApprovedGyms();
 		for(GymCenter gymCenter: gyms) {
+			System.out.printf("%-8s\t", gymCenter.getId());
 			System.out.printf("%-8s\t", gymCenter.getName());
 			System.out.printf("%-8s\t", gymCenter.getLocation());
-			System.out.println(gymCenter.getNoOfSeats());
-			System.out.println(gymCenter.getGymOwnerEmail());
+			System.out.printf("%-8s\t", gymCenter.getNoOfSeats());
+			System.out.printf("%-8s\t", gymCenter.getGymOwnerEmail());
 			
 			if(gymCenter.isApproved())
 			{
