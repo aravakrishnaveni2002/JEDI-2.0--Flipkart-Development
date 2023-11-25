@@ -12,7 +12,7 @@ import java.util.*;
  *
  */
 public class CustomerBusiness implements CustomerBusinessInterface {
-
+	CustomerDao customerDao = new CustomerDaoImpl();
 	List<BookedSlot> bookedSlotList=new ArrayList<>();
 	public CustomerBusiness() {
 		BookedSlot ob1=new BookedSlot();
@@ -69,19 +69,9 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 	}
 
 
-	public boolean cancelSlot(int bookingId,String customerEmail) {
+	public void cancelSlot(int bookingId,String customerEmail) {
 		System.out.println("Cancelling Slot");
-		System.out.println("Cancelling Slot");
-		List<BookedSlot> bs = viewAllBookings(customerEmail);
-		for(int i=0;i<bs.size();i++)
-		{
-			if(bs.get(i).getId() == bookingId)
-			{
-				bookedSlotList.remove(bs.get(i));
-				return true;
-			}
-		}
-		return false;
+		customerDao.cancelSlot(bookingId , customerEmail);
 	}
 
 	public List<BookedSlot> viewAllBookings(String email) {
@@ -90,7 +80,7 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 		List<BookedSlot> bookedSlots=new ArrayList<>();
 
 		for(BookedSlot bs:bookedSlotList) {
-			if (bs.getUserEmail().equals(email)) {
+			if (bs.getCustomerEmail().equals(email)) {
 
 				bookedSlots.add(bs);
 			}
