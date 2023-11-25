@@ -30,7 +30,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			connection = DBUtils.getConnection();
 			System.out.println("Fetching Cutomer deatils...");
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_DETAILS);		    
-		    statement.setString(2,customerEmail);
+		    statement.setString(1,customerEmail);
 		    
 		    ResultSet rs = statement.executeQuery();
 		    
@@ -79,7 +79,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		return allGymCenters;
 	}
 	
-	public List<BookedSlot> viewAllBookings(String email) {
+	public List<BookedSlot> viewAllBookings(String customerEmail) {
 		List<BookedSlot> allBookings = new ArrayList<>();
 		
 		Connection connection = null;
@@ -88,7 +88,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		try {
 			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_ALL_BOOKEDSLOTS);
-	
+			statement.setString(1,customerEmail);
 		    ResultSet rs = statement.executeQuery();
 			
 		    while (rs.next()) {
@@ -112,7 +112,28 @@ public class CustomerDaoImpl implements CustomerDao {
 		return false;
 	}
 	
-	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date) {
+	public BookedSlot isAlreadyBooked(int gymCenterId,int slotId,String customerEmail,String date) {
+		BookedSlot bookedSlot = new BookedSlot();
+		
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
+		try {
+			connection = DBUtils.getConnection();
+			statement = connection.prepareStatement(SQLQueries.CHECK_SLOT_ALREADY_BOOKED);
+			statement.setInt(1, slotId);
+			statement.setInt(2, gymCenterId);
+			statement.setString(3, customerEmail);
+			statement.setString(4, date);
+		    ResultSet output = statement.executeQuery();
+		    if(output.next())
+		    	return true;
+		} catch(SQLException sqlExcep) {
+		       System.out.println(sqlExcep);
+		} catch(Exception excep) {
+		       excep.printStackTrace();
+		}
+		
 		return null;
 	}
 	

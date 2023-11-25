@@ -55,5 +55,4 @@ public class BookedSlot {
 	public void setSlotId(int slotId) {
 		this.slotId = slotId;
 	}
-
 }

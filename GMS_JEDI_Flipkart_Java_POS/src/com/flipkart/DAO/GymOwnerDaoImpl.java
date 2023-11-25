@@ -28,7 +28,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 			connection = DBUtils.getConnection();
 			System.out.println("Fetching GymOnwer Details...");
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_DETAILS);		    
-		    statement.setString(2,gymOwnerEmail);
+		    statement.setString(1,gymOwnerEmail);
 		    
 		    ResultSet rs = statement.executeQuery();
 		    
@@ -58,7 +58,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		try {
 			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_ALL_GYMS);
-	
+			statement.setString(1,gymOwnerEmail);
 		    ResultSet rs = statement.executeQuery();
 			
 		    while (rs.next()) {
@@ -89,7 +89,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		try {
 			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_ALL_APPROVED_GYMS);
-	
+			statement.setString(1,gymOwnerEmail);
 		    ResultSet rs = statement.executeQuery();
 			
 		    while (rs.next()) {
@@ -111,7 +111,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		return allApprovedGyms;
 	}
 	
-	public List<Slot> viewAllSlots(int GymCenterId){
+	public List<Slot> viewAllSlots(int gymCenterId){
 		List<Slot> allSlots = new ArrayList<>();
 		
 		Connection connection = null;
@@ -120,7 +120,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		try {
 			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_ALL_SLOTS_OF_GYM);
-	
+			statement.setInt(1,gymCenterId);
 		    ResultSet rs = statement.executeQuery();
 			
 		    while (rs.next()) {
@@ -192,7 +192,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		try {
 			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.CHECK_GYMOWNER_APPROVEVAL);
-			statement.setString(2, gymOwnerEmail);
+			statement.setString(1, gymOwnerEmail);
 		    ResultSet output = statement.executeQuery();
 		    if(output.next())
 		    	return true;

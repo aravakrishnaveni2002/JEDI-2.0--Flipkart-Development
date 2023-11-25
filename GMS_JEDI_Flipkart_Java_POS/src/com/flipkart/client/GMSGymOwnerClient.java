@@ -15,8 +15,10 @@ public class GMSGymOwnerClient {
 	
 	GymOwner gymOwner = new GymOwner();
 	GymCenter gymCenter = new GymCenter();
+	User user = new User();
 
 	GymOwnerBusinessInterface gymOwnerBusiness = new GymOwnerBusiness();
+	UserBusinessInterface userBusiness = new UserBusiness();
 	
 	public void registerGymOwner(Scanner sc){
 		
@@ -38,12 +40,10 @@ public class GMSGymOwnerClient {
 		System.out.println("Enter your password: ");
 		String password = sc.next();
 		
-		User user = new User();
+		
 		user.setEmail(gymOwner.getEmail());
 		user.setPassword(password);
 		user.setRoleId(2);
-		
-		UserBusinessInterface userBusiness = new UserBusiness();
 		userBusiness.registerGymOwner(gymOwner);
 	}
 	

@@ -23,7 +23,7 @@ public interface CustomerDao {
 	
 	public boolean bookSlot(int gymCenterId,int slotId,String date,String customerEmail);
 	
-	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date);
+	public BookedSlot isAlreadyBooked(int gymCenterId,int slotId,String customerEmail,String date);
 	
 	public void cancelSlot(int bookingId,String customerEmail);
 }

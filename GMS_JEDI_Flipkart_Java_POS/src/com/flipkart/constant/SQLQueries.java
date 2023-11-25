@@ -17,6 +17,6 @@ public class SQLQueries {
 	public static final String FETCH_GYMOWNER_ALL_APPROVED_GYMS = "SELECT * FROM GymCenter WHERE gymOwnerEmail=? and isApproved=1";
 	public static final String CHECK_GYMOWNER_APPROVEVAL = "SELECT * FROM GymOwner WHERE id=? and isApproved=1";
 	public static final String FETCH_ALL_BOOKEDSLOTS = "SELECT * FROM BookedSlot WHERE customerId=?";
-
+	public static final String CHECK_SLOT_ALREADY_BOOKED = "SELECT * FROM BookedSlot WHERE slotId=? and gymCenterId=? and customerEmail=? and date=?";
 	public static final String CANCEL_BOOKING = "Delete from BookedSlot where id = ? and customerEmail = ?";
 }

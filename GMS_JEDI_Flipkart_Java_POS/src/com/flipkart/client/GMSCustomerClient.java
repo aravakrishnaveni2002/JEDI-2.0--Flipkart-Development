@@ -15,8 +15,10 @@ public class GMSCustomerClient {
 
 	CustomerBusinessInterface customerBusiness = new CustomerBusiness();
 	GymOwnerBusinessInterface gymOwnerBusiness = new GymOwnerBusiness();
+	UserBusinessInterface userBusiness = new UserBusiness();
 	
 	Customer customer = new Customer();
+	User user = new User();
 	
 	public void customerRegistration(Scanner sc) {
 		System.out.println("Enter your name: ");
@@ -29,11 +31,10 @@ public class GMSCustomerClient {
 		customer.setAddress(sc.next());
 		System.out.println("Enter your password: ");
 		String password = sc.next();
-		User user = new User();
+		
 		user.setPassword(password);
 		user.setEmail(customer.getEmail());
 		user.setRoleId(3);
-		UserBusinessInterface userBusiness = new UserBusiness();
 		userBusiness.registerUser(user);
 		userBusiness.registerCustomer(customer);
 	}
@@ -57,7 +58,7 @@ public class GMSCustomerClient {
 	
 	public void cancelBookedSlot(Scanner sc,String customerEmail)
 	{
-		List<BookedSlot>registeredBookings = customerBusiness.viewAllBookings(customerEmail);
+		List<BookedSlot> registeredBookings = customerBusiness.viewAllBookings(customerEmail);
 		System.out.println("Enter the BookedSlotId");
 		int id = sc.nextInt();
 		for(int i=0;i<registeredBookings.size();i++)
@@ -71,11 +72,11 @@ public class GMSCustomerClient {
 	public void viewAllBookedSlots(String customerEmail) {
 		List<BookedSlot> bookedSlots= customerBusiness.viewAllBookings(customerEmail);
 		for(BookedSlot bs: bookedSlots) {
+			System.out.printf("%-8s\t", bs.getId());
 			System.out.printf("%-8s\t", bs.getSlotId());
-			System.out.printf("%-8s\t", bs.getDate());
-			System.out.printf("%-8s\t", bs.getUserId());
 			System.out.printf("%-8s\t", bs.getGymCenterId());
-			System.out.printf("%-8s\t", bs.getUserEmail());
+			System.out.printf("%-8s\t", bs.getDate());
+			System.out.printf("%-8s\t", bs.getCustomerEmail());
 			System.out.println();
 		}
 	}
@@ -128,8 +129,7 @@ public class GMSCustomerClient {
 			default:
 				System.out.println("Incorrect choice");
 			}
-		}
-			
+		}	
 		
 	}
 
