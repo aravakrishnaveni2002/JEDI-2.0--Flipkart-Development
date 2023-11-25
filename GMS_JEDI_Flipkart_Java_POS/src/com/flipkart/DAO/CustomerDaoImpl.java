@@ -3,16 +3,12 @@
  */
 package com.flipkart.DAO;
 
+import java.sql.*;
 import java.util.*;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import com.flipkart.bean.*;
 import com.flipkart.constant.SQLQueries;
-import com.flipkart.DAO.*;
+import com.flipkart.utils.*;
 
 
 /**
@@ -28,7 +24,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		PreparedStatement statement = null;
 		
 		try {
-			connection = DBUtils.getConnection();
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
 			System.out.println("Fetching Cutomer deatils...");
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_DETAILS);		    
 		    statement.setString(1,customerEmail);
@@ -95,9 +93,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		    while (rs.next()) {
 		    	BookedSlot bookedSlot = new BookedSlot();
 		    	bookedSlot.setId(rs.getInt("id"));
-		    	bookedSlot.setGymCenterIde(rs.getInt("gymCenterId"));
+		    	bookedSlot.setGymCenterId(rs.getInt("gymCenterId"));
 		    	bookedSlot.setSlotId(rs.getInt("slotId"));
-		    	bookedSlot.setCustomerId(rs.getInt("customerId"));
+		    	bookedSlot.setCustomerEmail(rs.getString("customerEmail"));
 		    	bookedSlot.setDate(rs.getString("date"));
 		    	allBookings.add(bookedSlot);
 			}
@@ -145,8 +143,16 @@ public class CustomerDaoImpl implements CustomerDao {
 			statement.setString(3, customerEmail);
 			statement.setString(4, date);
 		    ResultSet output = statement.executeQuery();
-		    if(output.next())
-		    	return true;
+		    if(output.next()){
+				BookedSlot bookedslot = new BookedSlot();
+				bookedslot.setId(output.getInt("id"));
+				bookedslot.setSlotId(output.getInt("slotId"));
+				bookedslot.setCustomerEmail(output.getString("customerEmail"));
+				bookedslot.setGymCenterId(output.getInt("gymCenterId"));
+				bookedslot.setDate(output.getString("date"));
+				return bookedslot;
+			}
+
 		} catch(SQLException sqlExcep) {
 		       System.out.println(sqlExcep);
 		} catch(Exception excep) {

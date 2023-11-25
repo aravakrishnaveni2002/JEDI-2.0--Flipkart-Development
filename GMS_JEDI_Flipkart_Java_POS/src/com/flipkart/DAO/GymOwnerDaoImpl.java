@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.flipkart.utils.*;
 import java.util.*;
 
 /**
@@ -25,7 +26,9 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		PreparedStatement statement = null;
 		
 		try {
-			connection = DBUtils.getConnection();
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
 			System.out.println("Fetching GymOnwer Details...");
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_DETAILS);		    
 		    statement.setString(1,gymOwnerEmail);
