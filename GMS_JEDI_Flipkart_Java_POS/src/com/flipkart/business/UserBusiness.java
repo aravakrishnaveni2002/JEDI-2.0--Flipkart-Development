@@ -37,10 +37,20 @@ public class UserBusiness implements UserBusinessInterface{
 
 
 	}
+
+	/**
+
+	 Registers a customer in the database.
+	 @param customer The Customer object representing the customer data
+	 */
 	public void registerCustomer(Customer customer) {
+
 		System.out.println("Customer registered");
 	}
 
+	/**
+	 * Returns the Admin from the list of Users
+	 */
 	public User getAdmin()
 	{
 
@@ -52,6 +62,10 @@ public class UserBusiness implements UserBusinessInterface{
 		return null;
 	}
 
+	/**
+	 * View all the customers which are in the list of users
+	 * @return List of all the customers
+	 */
 	public List<User> viewAllCustomers()
 	{
 		List<User>allCustomers = new ArrayList<>();
@@ -63,6 +77,10 @@ public class UserBusiness implements UserBusinessInterface{
 		return allCustomers;
 	}
 
+	/**
+	 * View all the Gym Owners which are in the list of users
+	 * @return List of all the Gym Owners
+	 */
 	public List<User> viewAllGymOwners()
 	{
 		List<User>allGymOwners = new ArrayList<>();
@@ -74,18 +92,38 @@ public class UserBusiness implements UserBusinessInterface{
 		return allGymOwners;
 	}
 
+	/**
+
+	 Registers a GymOwner in the database.
+	 @param gymOwner The gymOwner object representing the gym owner data
+	 */
 	public void registerGymOwner(GymOwner gymOwner) {
 		System.out.println("GymOwner registered");
 	}
-	
+
+	/**
+
+	 Authenticates a user based on the provided user data.
+	 @param user The User object representing the user data
+	 */
 	public void login(User user) {
 		System.out.println("Logged in successfully");
 	}
-	
+
+	/**
+
+	 Logs out a user.
+	 @param user The User object representing the user data
+	 */
 	public void logout(User user) {
 		System.out.println("LoggedOut in successfully");
 	}
-	
+
+	/**
+
+	 Registers a user in the database.
+	 @param user The User object representing the user data
+	 */
 	public void registerUser(User user) {
 		System.out.println("User registered");
 	}
