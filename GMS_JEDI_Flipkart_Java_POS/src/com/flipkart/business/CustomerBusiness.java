@@ -11,7 +11,7 @@ import java.util.*;
 /**
  *
  */
-public class CustomerBusiness {
+public class CustomerBusiness implements CustomerBusinessInterface {
 
 	List<BookedSlot> bookedSlotList=new ArrayList<>();
 	public CustomerBusiness() {
@@ -59,7 +59,7 @@ public class CustomerBusiness {
 	}
 
 
-	private BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date) {
+	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date) {
 		List<BookedSlot> bookedSlots = viewAllBookings(customerEmail);
 		for(BookedSlot bst : bookedSlots){
 			if(bst.getDate().equals(date) && bst.getSlotId()== slotId){

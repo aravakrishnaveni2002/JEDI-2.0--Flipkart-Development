@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * 
  */
-public class UserBusiness {
+public class UserBusiness implements UserBusinessInterface{
 
 	List<User> userList = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class UserBusiness {
 
 	public User getAdmin()
 	{
-		System.out.println(userList);
+
 		for(int i=0;i<userList.size();i++)
 		{
 			//System.out.println(userList.get(i).getRoleId());

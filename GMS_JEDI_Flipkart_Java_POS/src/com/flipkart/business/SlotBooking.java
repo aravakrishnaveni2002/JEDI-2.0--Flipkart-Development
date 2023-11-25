@@ -7,7 +7,7 @@ import com.flipkart.bean.Slot;
 /**
  * 
  */
-public class SlotBooking {
+public class SlotBooking implements  SlotBookingInterface{
 	
 	public boolean isAvailable(Slot slot) {
 		System.out.println("Checking for avialiability");

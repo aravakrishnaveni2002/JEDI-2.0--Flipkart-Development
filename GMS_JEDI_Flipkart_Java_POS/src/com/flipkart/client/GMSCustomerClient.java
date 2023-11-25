@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class GMSCustomerClient {
 
-	CustomerBusiness customerBusiness = new CustomerBusiness();
+	CustomerBusinessInterface customerBusiness = new CustomerBusiness();
 	Customer customer = new Customer();
 	
 	public void customerRegistration(Scanner sc) {
@@ -31,7 +31,7 @@ public class GMSCustomerClient {
 		user.setPassword(password);
 		user.setEmail(customer.getEmail());
 		user.setRoleId(3);
-		UserBusiness userBusiness = new UserBusiness();
+		UserBusinessInterface userBusiness = new UserBusiness();
 //		UserBusiness.registerUser(user);
 //		UserBusiness.registerCustomer(customer);
 	}

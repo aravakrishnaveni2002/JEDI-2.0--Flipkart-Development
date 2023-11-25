@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * 
  */
-public class AdminBusiness {
+public class AdminBusiness implements AdminBusinessInterface{
 	
 	List<GymCenter> pendingGymRequests;
 	List<GymCenter> allApprovedGyms;

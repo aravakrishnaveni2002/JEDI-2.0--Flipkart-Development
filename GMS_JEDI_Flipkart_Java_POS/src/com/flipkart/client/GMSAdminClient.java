@@ -5,6 +5,8 @@ package com.flipkart.client;
 import com.flipkart.business.AdminBusiness;
 import com.flipkart.bean.GymCenter;
 import com.flipkart.bean.GymOwner;
+import com.flipkart.business.AdminBusinessInterface;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  */
 public class GMSAdminClient {
 		
-	AdminBusiness adminBusiness = new AdminBusiness();
+	AdminBusinessInterface adminBusiness = new AdminBusiness();
 	
 	public void approveGymOwnerRequest(Scanner sc) {
 		System.out.println("Enter the gymOwner Id");

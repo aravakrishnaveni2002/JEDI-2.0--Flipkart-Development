@@ -11,7 +11,7 @@ import com.flipkart.bean.*;
 /**
  * 
  */
-public class GymOwnerBusiness {
+public class GymOwnerBusiness implements GymOwnerBusinessInterface{
 	
 	public GymOwner getGymOwnerDetails(int gymOwnerId) {
 		return new GymOwner();
@@ -33,7 +33,7 @@ public class GymOwnerBusiness {
 	}
 	
 	public void addGym(GymCenter gymCenter) {
-		System.out.println("Slot added successfully");
+		System.out.println("GymCenter added successfully");
 		return;
 	}
 	

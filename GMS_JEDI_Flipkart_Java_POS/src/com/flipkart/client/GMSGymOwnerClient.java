@@ -16,7 +16,7 @@ public class GMSGymOwnerClient {
 	GymOwner gymOwner = new GymOwner();
 	GymCenter gymCenter = new GymCenter();
 
-	GymOwnerBusiness gymOwnerBusiness = new GymOwnerBusiness();
+	GymOwnerBusinessInterface gymOwnerBusiness = new GymOwnerBusiness();
 	
 	public void registerGymOwner(Scanner sc){
 		
@@ -43,7 +43,7 @@ public class GMSGymOwnerClient {
 		user.setPassword(password);
 		user.setRoleId(2);
 		
-		UserBusiness userBusiness = new UserBusiness();
+		UserBusinessInterface userBusiness = new UserBusiness();
 		userBusiness.registerGymOwner(gymOwner);
 	}
 	
