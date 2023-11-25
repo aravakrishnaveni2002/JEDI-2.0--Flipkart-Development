@@ -24,14 +24,15 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 		return customerDao.viewAllGymCentres();
 	}
 
-	public boolean bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
+	public void bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
 		BookedSlot b = isAlreadyBooked(gymCenterId, slotId,customerEmail,date);
 		if(b != null) {
 			cancelSlot(b.getId(),customerEmail);
 		}
-		
+
+        customerDao.bookSlot(gymCenterId,slotId,date,customerEmail);
+
 		System.out.println("Slot booked");
-		return true;
 	}
 
 

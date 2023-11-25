@@ -14,6 +14,8 @@ public class SQLQueries {
 	public static final String FETCH_GYMOWNER_ALL_GYMS = "SELECT * FROM GymCenter WHERE gymOwnerEmail=?";
 	public static final String INSERT_GYM = "INSERT INTO GymCenter (id, gymOwnerEmail, name, location, noOfSeats, isApproved) values (?, ?, ?, ?, ?, ?)";
 	public static final String INSERT_SLOT = "INSERT INTO AllSlots (gymCenterId, slotId) values(?, ?)";
+
+	public static final String INSERT_BOOKEDSLOT = "INSERT INTO BookedSlot (userEmail, gymCenterId, slotId, date) values(?, ?, ?, ?)";
 	public static final String FETCH_GYMOWNER_ALL_APPROVED_GYMS = "SELECT * FROM GymCenter WHERE gymOwnerEmail=? and isApproved=1";
 	public static final String CHECK_GYMOWNER_APPROVEVAL = "SELECT * FROM GymOwner WHERE id=? and isApproved=1";
 	public static final String FETCH_ALL_BOOKEDSLOTS = "SELECT * FROM BookedSlot WHERE customerId=?";

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 import com.flipkart.bean.*;
 import com.flipkart.constant.SQLQueries;
+import com.flipkart.DAO.*;
 
 
 /**
@@ -38,7 +39,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		    customer.setEmail(rs.getString("email"));
 		    customer.setAddress(rs.getString("address"));
 		    customer.setName(rs.getString("name"));
-		    customer.setPhone(rs.getString("phone"));	
+		    customer.setPhone(rs.getInt("phone"));
 		    
 	    } catch(SQLException sqlExcep) {
 		       System.out.println(sqlExcep);
@@ -108,8 +109,26 @@ public class CustomerDaoImpl implements CustomerDao {
 		return allBookings;
 	}
 	
-	public boolean bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
-		return false;
+	public void bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+
+		try {
+			connection = DBUtils.getConnection();
+			statement = connection.prepareStatement(SQLQueries.INSERT_BOOKEDSLOT);
+
+			statement.setString(1,customerEmail);
+			statement.setInt(2,gymCenterId);
+			statement.setInt(3,slotId);
+			statement.setString(4,date);
+			statement.executeUpdate();
+			statement.close();
+
+		} catch(SQLException sqlExcep) {
+			System.out.println(sqlExcep);
+		} catch(Exception excep) {
+			excep.printStackTrace();
+		}
 	}
 	
 	public BookedSlot isAlreadyBooked(int gymCenterId,int slotId,String customerEmail,String date) {

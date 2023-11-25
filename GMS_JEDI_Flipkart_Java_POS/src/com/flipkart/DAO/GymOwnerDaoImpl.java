@@ -37,7 +37,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		    gymOwner.setAddress(rs.getString("address"));
 		    gymOwner.setGstNumber(rs.getString("gstNumber"));
 		    gymOwner.setName(rs.getString("name"));
-		    gymOwner.setPhone(rs.getString("phone"));	
+		    gymOwner.setPhone(rs.getInt("phone"));
 		    gymOwner.setApproved(rs.getBoolean("isApproved"));
 			
 	    } catch(SQLException sqlExcep) {
@@ -68,7 +68,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 				gym.setLocation(rs.getString("location"));
 				gym.setNoOfSeats(rs.getInt("noOfSeats"));
 				gym.setGymOwnerEmail(rs.getString("gymOwnerEmail"));
-				gym.setApproved(rs.getInt("isApproved"));
+				gym.setApproved(rs.getBoolean("isApproved"));
 				allGyms.add(gym);
 			}
 	    } catch(SQLException sqlExcep) {
@@ -99,7 +99,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 				gym.setLocation(rs.getString("location"));
 				gym.setNoOfSeats(rs.getInt("noOfSeats"));
 				gym.setGymOwnerEmail(rs.getString("gymOwnerEmail"));
-				gym.setApproved(rs.getInt("isApproved"));
+				gym.setApproved(rs.getBoolean("isApproved"));
 				allApprovedGyms.add(gym);
 			}
 	    } catch(SQLException sqlExcep) {
