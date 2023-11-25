@@ -15,7 +15,6 @@ public class GymCenter {
 	private int noOfSeats;
 	private boolean isApproved;
 	
-
 	public int getId() {
 		return id;
 	}

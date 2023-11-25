@@ -26,7 +26,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		try {
 //			connection = DBUtils.getConnection();
 			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
+					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			System.out.println("Fetching Cutomer deatils...");
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_DETAILS);		    
 		    statement.setString(1,customerEmail);
@@ -55,7 +55,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		PreparedStatement statement = null;
 		
 		try {
-			connection = DBUtils.getConnection();
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			statement = connection.prepareStatement(SQLQueries.FETCH_ALL_APPROVED_GYMS);
 	
 		    ResultSet rs = statement.executeQuery();
@@ -85,7 +87,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		PreparedStatement statement = null;
 		
 		try {
-			connection = DBUtils.getConnection();
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			statement = connection.prepareStatement(SQLQueries.FETCH_ALL_BOOKEDSLOTS);
 			statement.setString(1,customerEmail);
 		    ResultSet rs = statement.executeQuery();
@@ -112,7 +116,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		PreparedStatement statement = null;
 
 		try {
-			connection = DBUtils.getConnection();
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			statement = connection.prepareStatement(SQLQueries.INSERT_BOOKEDSLOT);
 
 			statement.setString(1,customerEmail);
@@ -136,7 +142,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		PreparedStatement statement = null;
 		
 		try {
-			connection = DBUtils.getConnection();
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			statement = connection.prepareStatement(SQLQueries.CHECK_SLOT_ALREADY_BOOKED);
 			statement.setInt(1, slotId);
 			statement.setInt(2, gymCenterId);
@@ -167,7 +175,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		PreparedStatement statement = null;
 
 		try {
-			connection = DBUtils.getConnection();
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			statement = connection.prepareStatement(SQLQueries.CANCEL_BOOKING);
 			statement.setInt(1, bookingId);
 			statement.setString(2, customerEmail);
