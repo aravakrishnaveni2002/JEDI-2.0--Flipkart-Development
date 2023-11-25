@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CustomerBusinessInterface {
 
-    public Customer getCustomerDetails(int customerId);
+    public Customer getCustomerDetails(String customerEmail);
 
     public List<GymCenter> viewAllGymCentres();
 

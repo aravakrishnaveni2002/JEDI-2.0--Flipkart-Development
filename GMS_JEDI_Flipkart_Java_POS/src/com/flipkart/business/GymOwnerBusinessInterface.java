@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface GymOwnerBusinessInterface {
 
-    public GymOwner getGymOwnerDetails(int gymOwnerId);
+    public GymOwner getGymOwnerDetails(String gymOwnerEmail);
 
-    public List<Slot> viewAllSlots(int GymCenterId);
+    public List<Slot> viewAllSlots(int gymCenterId);
 
     public boolean isApproved(String gymOwnerEmail);
 
@@ -19,5 +19,7 @@ public interface GymOwnerBusinessInterface {
     public void addGym(GymCenter gymCenter);
 
     public List<GymCenter> viewAllGymCenters(String gymOwnerEmail);
+    
+    public List<GymCenter> viewAllApprovedGymCenters(String gymOwnerEmail);
 
 }

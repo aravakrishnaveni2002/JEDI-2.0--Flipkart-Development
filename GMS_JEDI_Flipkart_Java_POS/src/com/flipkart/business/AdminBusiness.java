@@ -82,11 +82,6 @@ public class AdminBusiness implements AdminBusinessInterface{
 		
 	}
 	
-	
-	
-	
-	
-	
 	public List<GymCenter> viewPendingGymRequests() {
 		System.out.println("All pending Gym requests");
 		return pendingGymRequests;

@@ -2,18 +2,19 @@
  * 
  */
 package com.flipkart.bean;
-
+import java.util.*;
 /**
  * 
  */
 public class GymCenter {
 	
 	private int id;
+	private String gymOwnerEmail;
 	private String name;
 	private String location;
 	private int noOfSeats;
 	private boolean isApproved;
-	private String gymOwnerEmail;
+	
 
 	public int getId() {
 		return id;
@@ -62,6 +63,5 @@ public class GymCenter {
 	public void setGymOwnerEmail(String gymOwnerEmail) {
 		this.gymOwnerEmail = gymOwnerEmail;
 	}
-
 	
 }

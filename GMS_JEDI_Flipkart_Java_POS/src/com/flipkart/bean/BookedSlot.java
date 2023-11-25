@@ -11,7 +11,7 @@ public class BookedSlot {
 	private int id;
 	private int gymCenterId;
 	private int slotId;
-	private int userId;
+	private int customerId;
 	private String date;
 	
 	public int getId() {
@@ -58,11 +58,11 @@ public class BookedSlot {
 	}
 
 	public int getUserId() {
-		return userId;
+		return customerId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(int customerId) {
+		this.customerId = customerId;
 	}
 	
 	

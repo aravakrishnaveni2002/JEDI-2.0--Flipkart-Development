@@ -7,39 +7,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.flipkart.bean.*;
+import com.flipkart.DAO.*;
 
 /**
  * 
  */
 public class GymOwnerBusiness implements GymOwnerBusinessInterface{
 	
-	public GymOwner getGymOwnerDetails(int gymOwnerId) {
-		return new GymOwner();
+	GymOwnerDao gymOwnerDao = new GymOwnerDaoImpl();
+	
+	public GymOwner getGymOwnerDetails(String gymOwnerEmail) {
+		return gymOwnerDao.getGymOwnerDetails(gymOwnerEmail);
 	}
 	
-	public List<Slot> viewAllSlots(int GymCenterId){
+	public List<Slot> viewAllSlots(int gymCenterId){
 		System.out.println("Listing all Slots in  GymCenter");
-		return new ArrayList<Slot>();
+		return gymOwnerDao.viewAllSlots(gymCenterId);
 	}
 	
 	public boolean isApproved(String gymOwnerEmail) {
-		System.out.println("Owner approved Successfully");
-		return true;
+		return gymOwnerDao.isApproved(gymOwnerEmail);
 	}
 
 	public void addSlots(int gymCenterId,Slot slot) {
+		gymOwnerDao.addSlots(gymCenterId, slot);
 		System.out.println("Slot added successfully");
-		return;
 	}
 	
 	public void addGym(GymCenter gymCenter) {
+		gymOwnerDao.addGym(gymCenter);
 		System.out.println("GymCenter added successfully");
-		return;
 	}
 	
 	public List<GymCenter> viewAllGymCenters(String gymOwnerEmail){
 		System.out.println("Listing all GymCenter");
-		return new ArrayList<GymCenter>();	
+		return gymOwnerDao.viewAllGymCenters(gymOwnerEmail);	
+	}
+	
+	public List<GymCenter> viewAllApprovedGymCenters(String gymOwnerEmail){
+		System.out.println("Listing all approved GymCenter");
+		return gymOwnerDao.viewAllApprovedGymCenters(gymOwnerEmail);
 	}
 	
 	

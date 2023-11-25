@@ -14,6 +14,8 @@ import java.util.*;
 public class GMSCustomerClient {
 
 	CustomerBusinessInterface customerBusiness = new CustomerBusiness();
+	GymOwnerBusinessInterface gymOwnerBusiness = new GymOwnerBusiness();
+	
 	Customer customer = new Customer();
 	
 	public void customerRegistration(Scanner sc) {
@@ -32,8 +34,8 @@ public class GMSCustomerClient {
 		user.setEmail(customer.getEmail());
 		user.setRoleId(3);
 		UserBusinessInterface userBusiness = new UserBusiness();
-//		UserBusiness.registerUser(user);
-//		UserBusiness.registerCustomer(customer);
+		userBusiness.registerUser(user);
+		userBusiness.registerCustomer(customer);
 	}
 	
 	
@@ -45,23 +47,24 @@ public class GMSCustomerClient {
 		System.out.println("Enter Slot ID:");
 		int slotId = sc.nextInt();
 
-		LocalDateTime currentTime = LocalDateTime.now();
-		DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		String formattedDate = currentTime.format(myFormat);
-		customerBusiness.bookSlot(gymCentreId,slotId,formattedDate,customerEmail);
+//		LocalDateTime currentTime = LocalDateTime.now();
+//		DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//		String formattedDate = currentTime.format(myFormat);
+		String date = sc.next();
+		customerBusiness.bookSlot(gymCentreId,slotId,date,customerEmail);
 
 	}
 	
 	public void cancelBookedSlot(Scanner sc,String customerEmail)
 	{
 		List<BookedSlot>registeredBookings = customerBusiness.viewAllBookings(customerEmail);
-		System.out.println("Enter the slotId");
+		System.out.println("Enter the BookedSlotId");
 		int id = sc.nextInt();
 		for(int i=0;i<registeredBookings.size();i++)
 		{
 			BookedSlot obj = registeredBookings.get(i);
 			if(obj.getId() == id)
-				customerBusiness.cancelSlot(id , customerEmail);
+				customerBusiness.cancelSlot(id, customerEmail);
 		}
 	}
 	
@@ -77,13 +80,33 @@ public class GMSCustomerClient {
 		}
 	}
 	
+	public void viewCatalog() {
+		List<GymCenter> allApprovedGyms = customerBusiness.viewAllGymCentres();
+		for(GymCenter gym: allApprovedGyms) {
+			System.out.printf("%-8s\t", gym.getId());
+			System.out.printf("%-8s\t", gym.getLocation());
+			System.out.printf("%-8s\t", gym.getNoOfSeats());
+			System.out.printf("%-8s\t", "Yes");
+			System.out.println("Listing all available slots");
+			List<Slot> allAvilableSlots = gymOwnerBusiness.viewAllSlots(gym.getId());
+			for(Slot slot: allAvilableSlots) {
+				System.out.printf("%-8s\t", slot.getId());
+				System.out.printf("%-8s\t", slot.getTime());
+				System.out.println();
+			}
+			System.out.println("-----------------------------");
+		}
+		System.out.println("-----------------------------");
+	}
+	
 	public void customerPage(Scanner sc, String customerEmail) {
 		
 		while(true) {
 			System.out.println("1. Book slot");
 			System.out.println("2. Cancel Booked slot");
 			System.out.println("3. View all booked Slots");
-			System.out.println("4. Exit");
+			System.out.println("4. View catalog");
+			System.out.println("5. Exit");
 			System.out.print("Enter your choice: ");
 			int choice = sc.nextInt();
 			switch (choice) {
@@ -97,6 +120,9 @@ public class GMSCustomerClient {
 				viewAllBookedSlots(customerEmail);
 				break;
 			case 4:
+				viewCatalog();
+				break;
+			case 5:
 				GMSApplicationClient.mainPage();
 				break;
 			default:

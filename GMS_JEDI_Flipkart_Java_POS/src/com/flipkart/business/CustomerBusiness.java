@@ -35,12 +35,11 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 
 
 
-	public Customer getCustomerDetails(int customerId) {
+	public Customer getCustomerDetails(String customerEmail) {
 		return new Customer();
 	}
 
 	public List<GymCenter> viewAllGymCentres() {
-		System.out.println("Listing all Gym Centers");
 		return new ArrayList<GymCenter>();
 	}
 
@@ -86,7 +85,7 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 	}
 
 	public List<BookedSlot> viewAllBookings(String email) {
-		System.out.println("Listing all customer booked slots");
+		System.out.println("Listing all booked slots of customer");
 
 		List<BookedSlot> bookedSlots=new ArrayList<>();
 

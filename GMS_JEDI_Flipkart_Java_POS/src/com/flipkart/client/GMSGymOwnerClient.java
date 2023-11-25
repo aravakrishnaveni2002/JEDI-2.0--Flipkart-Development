@@ -61,6 +61,26 @@ public class GMSGymOwnerClient {
 		gymOwnerBusiness.addGym(gymCenter);
 	}
 	
+	public void getGymOwnerDetails(String gymOwnerEmail) {
+		GymOwner gymOwner = gymOwnerBusiness.getGymOwnerDetails(gymOwnerEmail);
+		System.out.printf("%-8s\t", gymOwner.getId());
+		System.out.printf("%-8s\t", gymOwner.getName());
+		System.out.printf("%-8s\t", gymOwner.getEmail());
+		System.out.printf("%-8s\t", gymOwner.getAddress());
+		System.out.printf("%-8s\t", gymOwner.getGstNumber());
+		System.out.printf("%-8s\t", gymOwner.getPhone());
+		if(gymOwner.isApproved())
+		{
+			System.out.printf("%-8s\t", "Yes");
+		}
+		else
+		{
+			System.out.printf("%-8s\t", "No");
+		}
+		System.out.println("");
+		
+	}
+	
 	public void getAllGymDetails() {
 		List<GymCenter> allGyms = gymOwnerBusiness.viewAllGymCenters(gymOwner.getEmail());
 		for(GymCenter gym : allGyms) {
@@ -81,6 +101,18 @@ public class GMSGymOwnerClient {
 		System.out.println("-------------------------------------");
 	}
 	
+	public void getAllApprovedGymDetails() {
+		List<GymCenter> allApprovedGyms = gymOwnerBusiness.viewAllApprovedGymCenters(gymOwner.getEmail());
+		for(GymCenter gym : allApprovedGyms) {
+			System.out.printf("%-8s\t", gym.getId());
+			System.out.printf("%-8s\t", gym.getLocation());
+			System.out.printf("%-8s\t", gym.getNoOfSeats());
+			System.out.printf("%-8s\t", "Yes");
+			System.out.println("");
+		}
+		System.out.println("-------------------------------------");
+	}
+	
 	public void addSlots(Scanner sc, String gymOwnerEmail) {
 		getAllGymDetails();
 		System.out.println("Enter the gymCenter id for which you want to add slots: ");
@@ -90,12 +122,30 @@ public class GMSGymOwnerClient {
 			gymOwnerPage(sc, gymOwnerEmail);
 		}
 		else {
+			viewAllSlots(gymCenter.getId());
 			System.out.println("Add slot timing: ");
 			Slot slot = new Slot();
 			slot.setTime(sc.next());
 			gymOwnerBusiness.addSlots(gymCenter.getId(),slot);
 			gymOwnerPage(sc, gymOwnerEmail);
 		}
+	}
+	
+	public void viewAllSlots(int gymCenterId) {
+		System.out.println("Listing all existing slots: ");
+		List<Slot> allSlots = gymOwnerBusiness.viewAllSlots(gymCenter.getId());
+		for(Slot slot : allSlots) {
+			System.out.printf("%-8s\t", slot.getId());
+			System.out.printf("%-8s\t", slot.getTime());
+			System.out.println("");
+		}
+		System.out.println("-------------------------------------");
+	}
+	
+	public void viewAllSlots(Scanner sc) {
+		getAllApprovedGymDetails();
+		System.out.println("Enter the gymCenter id for which you want to see all slots: ");
+		viewAllSlots(sc.nextInt());
 	}
 	
 	public void gymOwnerPage(Scanner sc,String gymOwnerEmail) {
@@ -107,9 +157,11 @@ public class GMSGymOwnerClient {
 			gymOwner.setEmail(gymOwnerEmail);
 			while(true) {
 				System.out.println("1. Add Gyms");
-				System.out.println("2. View Gyms");
-				System.out.println("3. Add Slots");
-				System.out.println("4. Exit");
+				System.out.println("2. View All Gyms");
+				System.out.println("3. Add Slots in a Gym");
+				System.out.println("4. View All Slots of a Gym");
+				System.out.println("5. View Own Details");
+				System.out.println("6. Exit");
 				System.out.print("Enter your choice: ");
 				int choice = sc.nextInt();
 				switch (choice) {
@@ -121,7 +173,13 @@ public class GMSGymOwnerClient {
 					break;
 				case 3:
 					addSlots(sc, gymOwnerEmail);
+					break;
 				case 4:
+					viewAllSlots(sc);
+					break;
+				case 5:
+					getGymOwnerDetails(gymOwnerEmail);
+				case 6:
 					GMSApplicationClient.mainPage();
 					break;
 				default:

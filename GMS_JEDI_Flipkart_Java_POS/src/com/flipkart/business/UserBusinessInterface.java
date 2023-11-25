@@ -20,6 +20,6 @@ public interface UserBusinessInterface {
 
     public void logout(User user);
 
-    public void registerUser();
+    public void registerUser(User user);
 
 }

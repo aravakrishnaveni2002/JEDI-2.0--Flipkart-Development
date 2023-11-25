@@ -46,7 +46,6 @@ public class UserBusiness implements UserBusinessInterface{
 
 		for(int i=0;i<userList.size();i++)
 		{
-			//System.out.println(userList.get(i).getRoleId());
 			if(userList.get(i).getRoleId() == 1)
 				return userList.get(i);
 		}
@@ -87,7 +86,7 @@ public class UserBusiness implements UserBusinessInterface{
 		System.out.println("LoggedOut in successfully");
 	}
 	
-	public void registerUser() {
+	public void registerUser(User user) {
 		System.out.println("User registered");
 	}
 }
