@@ -6,7 +6,7 @@ import com.flipkart.bean.*;
 import java.util.*;
 
 /**
- * 
+ * This class implements the AdminBusinessInterface and provides the functionality for admin operations in the Gym Management System.
  */
 public class AdminBusiness implements AdminBusinessInterface{
 	
@@ -14,7 +14,8 @@ public class AdminBusiness implements AdminBusinessInterface{
 	List<GymCenter> allApprovedGyms;
 	List<GymOwner> pendingGymOwnerRequests;
 	List<GymOwner> allApprovedGymOwners;
-	
+
+
 	public AdminBusiness() {
 		GymOwner go1 = new GymOwner();
 		go1.setId(1);

@@ -11,7 +11,7 @@ public class BookedSlot {
 	private int id;
 	private int gymCenterId;
 	private int slotId;
-	private int customerId;
+	private String customerEmail;
 	private String date;
 	
 	public int getId() {
@@ -22,15 +22,14 @@ public class BookedSlot {
 		this.id = id;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
+	public String getCustomerEmail() {
+		return customerEmail;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
 
-	private String userEmail;
 	
 	public int getGymCenterId() {
 		return gymCenterId;
@@ -57,13 +56,4 @@ public class BookedSlot {
 		this.slotId = slotId;
 	}
 
-	public int getUserId() {
-		return customerId;
-	}
-
-	public void setUserId(int customerId) {
-		this.customerId = customerId;
-	}
-	
-	
 }

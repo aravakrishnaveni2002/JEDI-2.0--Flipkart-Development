@@ -116,7 +116,20 @@ public class CustomerDaoImpl implements CustomerDao {
 		return null;
 	}
 	
-	public boolean cancelSlot(int bookingId,String customerEmail) {
-		return false;
+	public void cancelSlot(int bookingId,String customerEmail) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+
+		try {
+			connection = DBUtils.getConnection();
+			statement = connection.prepareStatement(SQLQueries.CANCEL_BOOKING);
+			statement.setInt(1, bookingId);
+			statement.setString(2, customerEmail);
+			statement.executeUpdate();
+		} catch(SQLException sqlExcep) {
+			System.out.println(sqlExcep);
+		} catch(Exception excep) {
+			excep.printStackTrace();
+		}
 	}
 }

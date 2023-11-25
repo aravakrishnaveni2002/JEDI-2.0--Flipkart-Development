@@ -25,5 +25,5 @@ public interface CustomerDao {
 	
 	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date);
 	
-	public boolean cancelSlot(int bookingId,String customerEmail);
+	public void cancelSlot(int bookingId,String customerEmail);
 }
