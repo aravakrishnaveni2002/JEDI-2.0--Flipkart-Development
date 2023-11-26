@@ -28,31 +28,11 @@ public interface UserBusinessInterface {
     public List<User> viewAllGymOwners();
 
     /**
-
      Registers a GymOwner in the database.
      @param gymOwner The gymOwner object representing the gym owner data
      */
     public void registerGymOwner(GymOwner gymOwner);
 
-    /**
-
-     Authenticates a user based on the provided user data.
-     @param user The User object representing the user data
-     */
-    public void login(User user);
-
-    /**
-
-     Logs out a user.
-     @param user The User object representing the user data
-     */
-    public void logout(User user);
-
-    /**
-
-     Registers a user in the database.
-     @param user The User object representing the user data
-     */
     public void registerUser(User user);
 
 }
