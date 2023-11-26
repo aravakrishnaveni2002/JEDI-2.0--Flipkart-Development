@@ -14,14 +14,14 @@ import java.util.*;
  * 
  */
 public class UserBusiness implements UserBusinessInterface{
-	UserDao userImpl = new UserDaoImpl();
+	UserDao userDaoImpl = new UserDaoImpl();
 	/**
 	 Registers a customer in the database.
 	 @param customer The Customer object representing the customer data
 	 */
 	public void registerCustomer(Customer customer) {
-		System.out.println("Customer registered");
-		userImpl.registerCustomer(customer);
+		userDaoImpl.registerCustomer(customer);
+		System.out.println("Customer registered"); // Make this Green
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class UserBusiness implements UserBusinessInterface{
 	 */
 	public User getAdmin()
 	{
-		return userImpl.getAdmin();
+		return userDaoImpl.getAdmin();
 	}
 
 	/**
@@ -38,8 +38,8 @@ public class UserBusiness implements UserBusinessInterface{
 	 */
 	public List<User> viewAllCustomers()
 	{
-		System.out.println("Listing all customers");
-		return userImpl.viewAllCustomers();
+//		System.out.println("Listing all customers");
+		return userDaoImpl.viewAllCustomers();
 	}
 
 	/**
@@ -48,8 +48,8 @@ public class UserBusiness implements UserBusinessInterface{
 	 */
 	public List<User> viewAllGymOwners()
 	{
-		System.out.println("Listing all Gym Owners");
-		return userImpl.viewAllGymOwners();
+//		System.out.println("Listing all Gym Owners");
+		return userDaoImpl.viewAllGymOwners();
 	}
 
 	/**
@@ -58,12 +58,12 @@ public class UserBusiness implements UserBusinessInterface{
 	 @param gymOwner The gymOwner object representing the gym owner data
 	 */
 	public void registerGymOwner(GymOwner gymOwner) {
-		System.out.println("GymOwner registered");
-		userImpl.registerGymOwner(gymOwner);
+		userDaoImpl.registerGymOwner(gymOwner);
+		System.out.println("GymOwner registered"); //Make this Green
 	}
 
 	public void registerUser(User user) {
-		System.out.println("User registered");
-		userImpl.registerUser(user);
+		userDaoImpl.registerUser(user);
+		System.out.println("User registered"); //Make this Green
 	}
 }

@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao{
             statement.setString(3,gymOwner.getEmail());
             statement.setString(4,Long.toString(gymOwner.getPhone()));
             statement.setString(5, gymOwner.getGstNumber());
-            statement.setString(6, Boolean.toString(gymOwner.isApproved()));
+            statement.setInt(6, 0);
             statement.executeUpdate();
             statement.close();
 
@@ -74,14 +74,14 @@ public class UserDaoImpl implements UserDao{
         List<User> customerList = new ArrayList<>();
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
-            System.out.println("Listing all customers...");
+//            System.out.println("Listing all customers...");
             statement = connection.prepareStatement(SQLQueries.FETCH_ALL_CUSTOMERS_USERS);
             statement.setString(1,Integer.toString(3));
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
                 User user = new User();
                 user.setRoleId(rs.getInt("roleId"));
-                user.setPassword(rs.getString("passowrd"));
+                user.setPassword(rs.getString("password"));
                 user.setEmail(rs.getString("email"));
                 customerList.add(user);
             }
@@ -97,14 +97,14 @@ public class UserDaoImpl implements UserDao{
         List<User> gymOwnerList = new ArrayList<>();
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
-            System.out.println("Listing all Gym Owners...");
+//            System.out.println("Listing all Gym Owners...");
             statement = connection.prepareStatement(SQLQueries.FETCH_ALL_CUSTOMERS_USERS);
             statement.setString(1,Integer.toString(2));
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
                 User user = new User();
                 user.setRoleId(rs.getInt("roleId"));
-                user.setPassword(rs.getString("passowrd"));
+                user.setPassword(rs.getString("password"));
                 user.setEmail(rs.getString("email"));
                 gymOwnerList.add(user);
             }
@@ -120,13 +120,14 @@ public class UserDaoImpl implements UserDao{
         User user = new User();
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
-            System.out.println("Listing all Gym Owners...");
             statement = connection.prepareStatement(SQLQueries.FETCH_ALL_CUSTOMERS_USERS);
             statement.setString(1,Integer.toString(1));
             ResultSet rs = statement.executeQuery();
-            user.setRoleId(rs.getInt("roleId"));
-            user.setPassword(rs.getString("passowrd"));
-            user.setEmail(rs.getString("email"));
+            while(rs.next()){
+                user.setRoleId(rs.getInt("roleId"));
+                user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+            }
 
         } catch (SQLException sqlExcep){
             System.out.println(sqlExcep);

@@ -54,6 +54,7 @@ public class GMSCustomerClient {
 //		LocalDateTime currentTime = LocalDateTime.now();
 //		DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 //		String formattedDate = currentTime.format(myFormat);
+		System.out.println("Enter the date in DD-MM-YYYY format:");
 		String date = sc.next();
 		customerBusiness.bookSlot(gymCentreId,slotId,date,customerEmail);
 

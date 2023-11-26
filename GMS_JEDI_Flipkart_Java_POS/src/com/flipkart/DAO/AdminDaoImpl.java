@@ -22,10 +22,11 @@ public class AdminDaoImpl implements AdminDao{
             while(rs.next()){
                 GymCenter gymCenter = new GymCenter();
                 gymCenter.setId(rs.getInt("id"));
-                gymCenter.setGymOwnerEmail(rs.getString("gymOwnermail"));
+                gymCenter.setName(rs.getString("name"));
+                gymCenter.setGymOwnerEmail(rs.getString("gymOwnerEmail"));
                 gymCenter.setLocation(rs.getString("location"));
                 gymCenter.setNoOfSeats(rs.getInt("noOfSeats"));
-                gymCenter.setApproved(rs.getBoolean("isApproved"));
+                gymCenter.setApproved(false);
                 pendingReq.add(gymCenter);
             }
         } catch (SQLException sqlExcep){
@@ -48,7 +49,7 @@ public class AdminDaoImpl implements AdminDao{
                 GymOwner gymOwner = new GymOwner();
                 gymOwner.setId(rs.getInt("id"));
                 gymOwner.setAddress(rs.getString("address"));
-                gymOwner.setApproved(rs.getBoolean("isApproved"));
+                gymOwner.setApproved(false);
                 gymOwner.setPhone(rs.getInt("phone"));
                 gymOwner.setGstNumber(rs.getString("gstNumber"));
                 gymOwner.setName(rs.getString("name"));
@@ -77,7 +78,7 @@ public class AdminDaoImpl implements AdminDao{
                 gymCenter.setGymOwnerEmail(rs.getString("gymOwnerEmail"));
                 gymCenter.setLocation(rs.getString("location"));
                 gymCenter.setNoOfSeats(rs.getInt("noOfSeats"));
-                gymCenter.setApproved(rs.getBoolean("isApproved"));
+                gymCenter.setApproved(true);
                 approvedReq.add(gymCenter);
             }
         } catch (SQLException sqlExcep){
@@ -100,7 +101,7 @@ public class AdminDaoImpl implements AdminDao{
                 GymOwner gymOwner = new GymOwner();
                 gymOwner.setId(rs.getInt("id"));
                 gymOwner.setAddress(rs.getString("address"));
-                gymOwner.setApproved(rs.getBoolean("isApproved"));
+                gymOwner.setApproved(true);
                 gymOwner.setPhone(rs.getInt("phone"));
                 gymOwner.setGstNumber(rs.getString("gstNumber"));
                 gymOwner.setName(rs.getString("name"));
@@ -121,7 +122,7 @@ public class AdminDaoImpl implements AdminDao{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
             System.out.println("Approving Gym Owner Requests...");
             statement = connection.prepareStatement(SQLQueries.APPROVE_GYM_OWNER);
-            statement.setString(1, Integer.toString(gymOwnerId));
+            statement.setInt(1, gymOwnerId);
             result = statement.executeUpdate();
             statement.close();
         } catch (SQLException sqlExcep) {
@@ -141,7 +142,7 @@ public class AdminDaoImpl implements AdminDao{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
             System.out.println("Approving Gym Center Requests...");
             statement = connection.prepareStatement(SQLQueries.APPROVE_GYM_CENTER);
-            statement.setString(1,Integer.toString(gymCenterId));
+            statement.setInt(1,gymCenterId);
             result = statement.executeUpdate();
             statement.close();
         } catch(SQLException sqlExcep) {

@@ -32,9 +32,17 @@ public interface GymOwnerBusinessInterface {
     public boolean isApproved(String gymOwnerEmail);
 
     /**
+
+     This method checks if a gym center is approved based on the gym center id.
+     @param gymCenterId The id of the gym center
+     @return true if the gym center is approved, false otherwise
+     */
+    public boolean isApproved(int gymCenterId);
+
+    /**
      This method allows a gym owner to add a particular slot for their gym.
      @param gymCenterId The ID of the gym
-     @param slot The details of the slot to be added
+     @param slot The Details of the slot to be added
      */
     public void addSlots(int gymCenterId,Slot slot);
 
@@ -44,6 +52,13 @@ public interface GymOwnerBusinessInterface {
      @param gymCenter The Gym object representing the gym details
      */
     public void addGym(GymCenter gymCenter);
+
+    /**
+
+     This method allows a gym owner to add details of a particular slot.
+     @param slot The Slot object representing the gym details
+     */
+    public void createSlot(Slot slot);
 
     /**
      * This method fetches the gym details that belong to a gym owner.

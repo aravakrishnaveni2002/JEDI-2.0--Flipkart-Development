@@ -34,14 +34,15 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		    statement.setString(1,gymOwnerEmail);
 		    
 		    ResultSet rs = statement.executeQuery();
-		    
-		    gymOwner.setId(rs.getInt("id"));
-		    gymOwner.setEmail(rs.getString("email"));
-		    gymOwner.setAddress(rs.getString("address"));
-		    gymOwner.setGstNumber(rs.getString("gstNumber"));
-		    gymOwner.setName(rs.getString("name"));
-		    gymOwner.setPhone(rs.getInt("phone"));
-		    gymOwner.setApproved(rs.getBoolean("isApproved"));
+			while(rs.next()){
+				gymOwner.setId(rs.getInt("id"));
+				gymOwner.setEmail(rs.getString("email"));
+				gymOwner.setAddress(rs.getString("address"));
+				gymOwner.setGstNumber(rs.getString("gstNumber"));
+				gymOwner.setName(rs.getString("name"));
+				gymOwner.setPhone(rs.getInt("phone"));
+				gymOwner.setApproved(rs.getBoolean("isApproved"));
+			}
 			
 	    } catch(SQLException sqlExcep) {
 		       System.out.println(sqlExcep);
@@ -134,7 +135,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 			
 		    while (rs.next()) {
 		    	Slot slot = new Slot();
-		    	slot.setId(rs.getInt("id"));
+		    	slot.setId(rs.getInt("slotId"));
 		    	slot.setTime(rs.getString("time"));
 		    	allSlots.add(slot);
 			}
@@ -172,6 +173,29 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 	           excep.printStackTrace();
 	    }
 	}
+
+	public void createSlot(Slot slot){
+
+		Connection connection = null;
+		PreparedStatement statement = null;
+
+		try {
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			statement = connection.prepareStatement(SQLQueries.CREATE_SLOT);
+
+			statement.setInt(1,slot.getId());
+			statement.setString(2,slot.getTime());
+			statement.executeUpdate();
+			statement.close();
+
+		} catch(SQLException sqlExcep) {
+			System.out.println(sqlExcep);
+		} catch(Exception excep) {
+			excep.printStackTrace();
+		}
+	}
 	
 	public void addSlots(int gymCenterId,Slot slot) {
 			
@@ -186,6 +210,7 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 			
 			statement.setInt(1,gymCenterId);
 			statement.setInt(2,slot.getId());
+			statement.setString(3,slot.getTime());
 			statement.executeUpdate();
 			statement.close();
 			
@@ -214,6 +239,28 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 		       System.out.println(sqlExcep);
 		} catch(Exception excep) {
 		       excep.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean isApproved(int gymCenterId) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+
+
+		try {
+//			connection = DBUtils.getConnection();
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			statement = connection.prepareStatement(SQLQueries.CHECK_GYMCENTER_APPROVEVAL);
+			statement.setInt(1, gymCenterId);
+			ResultSet output = statement.executeQuery();
+			if(output.next())
+				return true;
+		} catch(SQLException sqlExcep) {
+			System.out.println(sqlExcep);
+		} catch(Exception excep) {
+			excep.printStackTrace();
 		}
 		return false;
 	}

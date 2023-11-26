@@ -25,6 +25,10 @@ public interface GymOwnerDao {
 	public void addSlots(int gymCenterId,Slot slot);
 	
 	public void addGym(GymCenter gymCenter);
+
+	public void createSlot(Slot slot);
 	
 	public boolean isApproved(String gymOwnerEmail);
+
+	public boolean isApproved(int gymCenterId);
 }

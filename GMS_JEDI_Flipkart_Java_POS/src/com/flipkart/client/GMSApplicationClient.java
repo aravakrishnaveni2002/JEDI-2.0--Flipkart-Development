@@ -70,7 +70,7 @@ public class GMSApplicationClient {
 				else
 				{
 					System.out.println(ANSI_RED + "Invalid Customer" + ANSI_RESET);
-//					System.out.println("Invalid Customer");
+					login();
 				}
 			    break;
 		    case "GymOwner":
@@ -82,7 +82,7 @@ public class GMSApplicationClient {
 				else
 				{
 					System.out.println(ANSI_RED + "Invalid GymOwner" + ANSI_RESET);
-//					System.out.println("Invalid GymOwner");
+					login();
 				}
 				break;
 		    case "Admin":
@@ -92,12 +92,9 @@ public class GMSApplicationClient {
 				}
 				else
 					System.out.println(ANSI_RED + "Invalid Admin" + ANSI_RESET);
-//					System.out.println("Invalid Admin");
+					login();
 				break;
 		}
-//		User user = new User();
-//		user.setEmail(username);
-//		user.setPassword(password);
 	}
 	
 	public static void mainPage() {

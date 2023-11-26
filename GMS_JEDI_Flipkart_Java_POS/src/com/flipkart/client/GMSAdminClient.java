@@ -40,6 +40,8 @@ public class GMSAdminClient {
 		System.out.printf("%-8s\t", "Location");
 		System.out.printf("%-8s\t", "No of Seats");
 		System.out.printf("%-8s\t", "Email");
+		System.out.printf("%-8s\t", "IsApproved");
+		System.out.println();
 		for(GymCenter gymCenter: gyms) {
 			System.out.printf("%-8s\t", gymCenter.getId());
 			System.out.printf("%-8s\t", gymCenter.getName());
@@ -49,14 +51,14 @@ public class GMSAdminClient {
 			
 			if(gymCenter.isApproved())
 			{
-				System.out.printf("%-8s\t");
-				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+				System.out.printf("%-8s\t", ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
 //				System.out.printf("%-8s\t", "Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t");
-				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+				System.out.printf("%-8s\t", ANSI_RED + "No" + ANSI_RESET);
+//				System.out.println(ANSI_RED + "No" + ANSI_RESET);
 //				System.out.printf("%-8s\t", "No");
 			}
 			System.out.println("");
@@ -72,6 +74,8 @@ public class GMSAdminClient {
 		System.out.printf("%-8s\t", "GST Number");
 		System.out.printf("%-8s\t", "Name");
 		System.out.printf("%-8s\t", "Phone");
+		System.out.printf("%-8s\t", "IsApproved");
+		System.out.println();
 		for(GymOwner gymOwner: owners) {
 			System.out.printf("%-8s\t", gymOwner.getId());
 			System.out.printf("%-8s\t", gymOwner.getAddress());
@@ -81,14 +85,14 @@ public class GMSAdminClient {
 			System.out.printf("%-8s\t", gymOwner.getPhone());
 			if(gymOwner.isApproved())
 			{
-				System.out.printf("%-8s\t");
-				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+				System.out.printf("%-8s\t", ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
 //				System.out.println("Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t");
-				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+				System.out.printf("%-8s\t", ANSI_RED + "No" + ANSI_RESET);
+//				System.out.println(ANSI_RED + "No" + ANSI_RESET);
 //				System.out.println("No");
 			}
 			System.out.println("");
@@ -103,6 +107,8 @@ public class GMSAdminClient {
 		System.out.printf("%-8s\t", "Location");
 		System.out.printf("%-8s\t", "No of Seats");
 		System.out.printf("%-8s\t", "Email");
+		System.out.printf("%-8s\t", "IsApproved");
+		System.out.println();
 		for(GymCenter gymCenter: gyms) {
 			System.out.printf("%-8s\t", gymCenter.getId());
 			System.out.printf("%-8s\t", gymCenter.getName());
@@ -112,14 +118,14 @@ public class GMSAdminClient {
 			
 			if(gymCenter.isApproved())
 			{
-				System.out.printf("%-8s\t");
-				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+				System.out.printf("%-8s\t", ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
 //				System.out.printf("%-8s\t", "Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t");
-				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+				System.out.printf("%-8s\t", ANSI_RED + "No" + ANSI_RESET);
+//				System.out.println(ANSI_RED + "No" + ANSI_RESET);
 //				System.out.printf("%-8s\t", "No");
 			}
 			System.out.println("");
@@ -135,6 +141,8 @@ public class GMSAdminClient {
 		System.out.printf("%-8s\t", "GST Number");
 		System.out.printf("%-8s\t", "Name");
 		System.out.printf("%-8s\t", "Phone");
+		System.out.printf("%-8s\t", "IsApproved");
+		System.out.println();
 		for(GymOwner gymOwner: owners) {
 			System.out.printf("%-8s\t", gymOwner.getId());
 			System.out.printf("%-8s\t", gymOwner.getAddress());
@@ -144,14 +152,14 @@ public class GMSAdminClient {
 			System.out.printf("%-8s\t", gymOwner.getPhone());
 			if(gymOwner.isApproved())
 			{
-				System.out.printf("%-8s\t");
-				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+				System.out.printf("%-8s\t", ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
 //				System.out.printf("%-8s\t", "Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t");
-				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+				System.out.printf("%-8s\t", ANSI_RED + "No" + ANSI_RESET);
+//				System.out.println(ANSI_RED + "No" + ANSI_RESET);
 //				System.out.printf("%-8s\t", "No");
 			}
 			System.out.println("");
