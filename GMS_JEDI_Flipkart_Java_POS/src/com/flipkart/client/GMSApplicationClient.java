@@ -12,6 +12,10 @@ import com.flipkart.business.*;
  */
 public class GMSApplicationClient {
 
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 	private static boolean check_Admin_Authentication(UserBusiness userBusiness, String username, String password)
 	{
 		User admin = userBusiness.getAdmin();
@@ -65,7 +69,8 @@ public class GMSApplicationClient {
 				}
 				else
 				{
-					System.out.println("Invalid Customer");
+					System.out.println(ANSI_RED + "Invalid Customer" + ANSI_RESET);
+//					System.out.println("Invalid Customer");
 				}
 			    break;
 		    case "GymOwner":
@@ -76,7 +81,8 @@ public class GMSApplicationClient {
 				}
 				else
 				{
-					System.out.println("Invalid GymOwner");
+					System.out.println(ANSI_RED + "Invalid GymOwner" + ANSI_RESET);
+//					System.out.println("Invalid GymOwner");
 				}
 				break;
 		    case "Admin":
@@ -85,7 +91,8 @@ public class GMSApplicationClient {
 					admin.adminPage(sc);
 				}
 				else
-					System.out.println("Invalid Admin");
+					System.out.println(ANSI_RED + "Invalid Admin" + ANSI_RESET);
+//					System.out.println("Invalid Admin");
 				break;
 		}
 //		User user = new User();
@@ -126,8 +133,9 @@ public class GMSApplicationClient {
 			System.out.println("Exiting.....");
 			System.exit(0);
 			break;
-		default: 
-			System.out.println("Wrong choice");
+		default:
+			System.out.println(ANSI_RED + "Wrong Choice" + ANSI_RESET);
+//			System.out.println("Wrong choice");
 			mainPage();
 		}
 	}

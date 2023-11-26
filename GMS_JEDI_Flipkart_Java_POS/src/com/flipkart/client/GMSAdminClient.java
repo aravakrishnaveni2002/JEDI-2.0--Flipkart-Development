@@ -17,7 +17,10 @@ import java.util.ArrayList;
 public class GMSAdminClient {
 		
 	AdminBusinessInterface adminBusiness = new AdminBusiness();
-	
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 	public void approveGymOwnerRequest(Scanner sc) {
 		System.out.println("Enter the gymOwner Id");
 		int gymOwnerId = sc.nextInt();
@@ -32,6 +35,11 @@ public class GMSAdminClient {
 	
 	public void viewPendingGymRequests() {
 		List<GymCenter> gyms = adminBusiness.viewPendingGymRequests();
+		System.out.printf("%-8s\t", "Id");
+		System.out.printf("%-8s\t", "Name");
+		System.out.printf("%-8s\t", "Location");
+		System.out.printf("%-8s\t", "No of Seats");
+		System.out.printf("%-8s\t", "Email");
 		for(GymCenter gymCenter: gyms) {
 			System.out.printf("%-8s\t", gymCenter.getId());
 			System.out.printf("%-8s\t", gymCenter.getName());
@@ -41,11 +49,15 @@ public class GMSAdminClient {
 			
 			if(gymCenter.isApproved())
 			{
-				System.out.printf("%-8s\t", "Yes");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.printf("%-8s\t", "Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t", "No");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+//				System.out.printf("%-8s\t", "No");
 			}
 			System.out.println("");
 		}
@@ -54,6 +66,12 @@ public class GMSAdminClient {
 	
 	public void viewPendingGymOwnerRequests() {
 		List<GymOwner> owners = adminBusiness.viewPendingGymOwnerRequests();
+		System.out.printf("%-8s\t", "Id");
+		System.out.printf("%-8s\t", "Address");
+		System.out.printf("%-8s\t", "Email");
+		System.out.printf("%-8s\t", "GST Number");
+		System.out.printf("%-8s\t", "Name");
+		System.out.printf("%-8s\t", "Phone");
 		for(GymOwner gymOwner: owners) {
 			System.out.printf("%-8s\t", gymOwner.getId());
 			System.out.printf("%-8s\t", gymOwner.getAddress());
@@ -63,11 +81,15 @@ public class GMSAdminClient {
 			System.out.printf("%-8s\t", gymOwner.getPhone());
 			if(gymOwner.isApproved())
 			{
-				System.out.println("Yes");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.println("Yes");
 			}
 			else
 			{
-				System.out.println("No");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+//				System.out.println("No");
 			}
 			System.out.println("");
 		}
@@ -76,6 +98,11 @@ public class GMSAdminClient {
 	
 	public void viewAllGymCenters() {
 		List<GymCenter> gyms = adminBusiness.viewAllApprovedGyms();
+		System.out.printf("%-8s\t", "Id");
+		System.out.printf("%-8s\t", "Name");
+		System.out.printf("%-8s\t", "Location");
+		System.out.printf("%-8s\t", "No of Seats");
+		System.out.printf("%-8s\t", "Email");
 		for(GymCenter gymCenter: gyms) {
 			System.out.printf("%-8s\t", gymCenter.getId());
 			System.out.printf("%-8s\t", gymCenter.getName());
@@ -85,11 +112,15 @@ public class GMSAdminClient {
 			
 			if(gymCenter.isApproved())
 			{
-				System.out.printf("%-8s\t", "Yes");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.printf("%-8s\t", "Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t", "No");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+//				System.out.printf("%-8s\t", "No");
 			}
 			System.out.println("");
 		}
@@ -98,6 +129,12 @@ public class GMSAdminClient {
 	
 	public void viewAllGymOwners() {
 		List<GymOwner> owners = adminBusiness.viewAllApprovedGymOnwers();
+		System.out.printf("%-8s\t", "Id");
+		System.out.printf("%-8s\t", "Address");
+		System.out.printf("%-8s\t", "Email");
+		System.out.printf("%-8s\t", "GST Number");
+		System.out.printf("%-8s\t", "Name");
+		System.out.printf("%-8s\t", "Phone");
 		for(GymOwner gymOwner: owners) {
 			System.out.printf("%-8s\t", gymOwner.getId());
 			System.out.printf("%-8s\t", gymOwner.getAddress());
@@ -107,11 +144,15 @@ public class GMSAdminClient {
 			System.out.printf("%-8s\t", gymOwner.getPhone());
 			if(gymOwner.isApproved())
 			{
-				System.out.printf("%-8s\t", "Yes");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.printf("%-8s\t", "Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t", "No");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+//				System.out.printf("%-8s\t", "No");
 			}
 			System.out.println("");
 		}

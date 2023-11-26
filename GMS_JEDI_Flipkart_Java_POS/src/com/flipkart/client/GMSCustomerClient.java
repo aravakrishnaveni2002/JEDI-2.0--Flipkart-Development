@@ -19,7 +19,10 @@ public class GMSCustomerClient {
 	
 	Customer customer = new Customer();
 	User user = new User();
-	
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 	public void customerRegistration(Scanner sc) {
 		System.out.println("Enter your name: ");
 		customer.setName(sc.next());
@@ -132,7 +135,8 @@ public class GMSCustomerClient {
 				GMSApplicationClient.mainPage();
 				break;
 			default:
-				System.out.println("Incorrect choice");
+				System.out.println(ANSI_RED + "Incorrect Choice" + ANSI_RESET);
+//				System.out.println("Incorrect choice");
 			}
 		}	
 		

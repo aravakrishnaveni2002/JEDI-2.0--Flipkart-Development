@@ -19,6 +19,10 @@ public class GMSGymOwnerClient {
 
 	GymOwnerBusinessInterface gymOwnerBusiness = new GymOwnerBusiness();
 	UserBusinessInterface userBusiness = new UserBusiness();
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 	
 	public void registerGymOwner(Scanner sc){
 		
@@ -71,11 +75,15 @@ public class GMSGymOwnerClient {
 		System.out.printf("%-8s\t", gymOwner.getPhone());
 		if(gymOwner.isApproved())
 		{
-			System.out.printf("%-8s\t", "Yes");
+			System.out.printf("%-8s\t");
+			System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+//			System.out.printf("%-8s\t", "Yes");
 		}
 		else
 		{
-			System.out.printf("%-8s\t", "No");
+			System.out.printf("%-8s\t");
+			System.out.println(ANSI_RED + "No" + ANSI_RESET);
+//			System.out.printf("%-8s\t", "No");
 		}
 		System.out.println("");
 		
@@ -90,11 +98,15 @@ public class GMSGymOwnerClient {
 			
 			if(gym.isApproved())
 			{
-				System.out.printf("%-8s\t", "Yes");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
+//				System.out.printf("%-8s\t", "Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t", "No");
+				System.out.printf("%-8s\t");
+				System.out.println(ANSI_RED + "No" + ANSI_RESET);
+//				System.out.printf("%-8s\t", "No");
 			}
 			System.out.println("");
 		}
@@ -118,7 +130,8 @@ public class GMSGymOwnerClient {
 		System.out.println("Enter the gymCenter id for which you want to add slots: ");
 		gymCenter.setId(sc.nextInt());
 		if(!gymCenter.isApproved()){
-			System.out.println("This Gym is not Authorized");
+			System.out.println(ANSI_RED + "This Gym is not Authorized" + ANSI_RESET);
+//			System.out.println("This Gym is not Authorized");
 			gymOwnerPage(sc, gymOwnerEmail);
 		}
 		else {
@@ -150,7 +163,8 @@ public class GMSGymOwnerClient {
 	
 	public void gymOwnerPage(Scanner sc,String gymOwnerEmail) {
 		if(!gymOwnerBusiness.isApproved(gymOwnerEmail)) {
-			System.out.println("You are not a Authorized Gym Owner");
+			System.out.println(ANSI_RED + "You are not a Authorized Gym Owner" + ANSI_RESET);
+//			System.out.println("You are not a Authorized Gym Owner");
 			GMSApplicationClient.mainPage();
 		}
 		else {
@@ -183,7 +197,8 @@ public class GMSGymOwnerClient {
 					GMSApplicationClient.mainPage();
 					break;
 				default:
-					System.out.println("incorrect choice");
+					System.out.println(ANSI_RED + "Incorrect Choice" + ANSI_RESET);
+//					System.out.println("incorrect choice");
 				}
 			}
 			
