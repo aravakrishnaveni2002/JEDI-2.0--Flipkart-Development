@@ -33,13 +33,12 @@ public interface CustomerBusinessInterface {
 
     /**
      * Checks if a customer has already booked a slot at a specified slot time and date.
-     * @param gymCenterId The id of thr center in which it is to be checked that the particular slot in it is already booked or not
      * @param slotId The ID of the slot
      * @param customerEmail The email of the customer
      * @param date The date of the slot
      * @return Booked slot object representing the booked slot details
      */
-    public BookedSlot isAlreadyBooked(int gymCenterId, int slotId, String customerEmail, String date);
+    public BookedSlot isAlreadyBooked(int slotId, String customerEmail, String date);
 
     /**
      * Cancels a booked slot for a customer based on the booking ID.

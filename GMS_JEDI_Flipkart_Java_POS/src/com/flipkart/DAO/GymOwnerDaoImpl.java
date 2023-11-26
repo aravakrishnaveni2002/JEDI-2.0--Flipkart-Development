@@ -157,13 +157,12 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 			connection = DriverManager
 					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			statement = connection.prepareStatement(SQLQueries.INSERT_GYM);
-			
-			statement.setInt(1,gymCenter.getId());
-			statement.setString(2,gymCenter.getGymOwnerEmail());
-			statement.setString(3,gymCenter.getName());
-			statement.setString(4,gymCenter.getLocation());
-			statement.setInt(5,gymCenter.getNoOfSeats());
-			statement.setInt(6,0);
+
+			statement.setString(1,gymCenter.getGymOwnerEmail());
+			statement.setString(2,gymCenter.getName());
+			statement.setString(3,gymCenter.getLocation());
+			statement.setInt(4,gymCenter.getNoOfSeats());
+			statement.setInt(5,0);
 			statement.executeUpdate();
 			statement.close();
 			

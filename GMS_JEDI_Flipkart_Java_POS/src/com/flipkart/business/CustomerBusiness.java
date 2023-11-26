@@ -41,7 +41,7 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 	 * @param customerEmail The email of the customer
 	 */
 	public void bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
-		BookedSlot b = isAlreadyBooked(gymCenterId, slotId,customerEmail,date);
+		BookedSlot b = isAlreadyBooked(slotId,customerEmail,date);
 		if(b != null) {
 			cancelSlot(b.getId(),customerEmail);
 		}
@@ -53,14 +53,13 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 
 	/**
 	 * Checks if a customer has already booked a slot at a specified slot time and date.
-	 * @param gymCenterId The id of thr center in which it is to be checked that the particular slot in it is already booked or not
 	 * @param slotId The ID of the slot
 	 * @param customerEmail The email of the customer
 	 * @param date The date of the slot
 	 * @return Booked slot object representing the booked slot details
 	 */
-	public BookedSlot isAlreadyBooked(int gymCenterId, int slotId,String customerEmail,String date) {
-		return customerDao.isAlreadyBooked(gymCenterId,slotId,customerEmail,date);
+	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date) {
+		return customerDao.isAlreadyBooked(slotId,customerEmail,date);
 		
 	}
 

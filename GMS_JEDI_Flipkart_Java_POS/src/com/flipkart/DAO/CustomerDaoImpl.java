@@ -120,10 +120,9 @@ public class CustomerDaoImpl implements CustomerDao {
 			connection = DriverManager
 					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			statement = connection.prepareStatement(SQLQueries.INSERT_BOOKEDSLOT);
-
-			statement.setString(1,customerEmail);
-			statement.setInt(2,gymCenterId);
-			statement.setInt(3,slotId);
+			statement.setInt(1,gymCenterId);
+			statement.setInt(2,slotId);
+			statement.setString(3,customerEmail);
 			statement.setString(4,date);
 			statement.executeUpdate();
 			statement.close();
@@ -135,7 +134,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 	}
 	
-	public BookedSlot isAlreadyBooked(int gymCenterId,int slotId,String customerEmail,String date) {
+	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date) {
 		BookedSlot bookedSlot = new BookedSlot();
 		
 		Connection connection = null;
@@ -147,9 +146,8 @@ public class CustomerDaoImpl implements CustomerDao {
 					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
 			statement = connection.prepareStatement(SQLQueries.CHECK_SLOT_ALREADY_BOOKED);
 			statement.setInt(1, slotId);
-			statement.setInt(2, gymCenterId);
-			statement.setString(3, customerEmail);
-			statement.setString(4, date);
+			statement.setString(2, customerEmail);
+			statement.setString(3, date);
 		    ResultSet output = statement.executeQuery();
 		    if(output.next()){
 				BookedSlot bookedslot = new BookedSlot();

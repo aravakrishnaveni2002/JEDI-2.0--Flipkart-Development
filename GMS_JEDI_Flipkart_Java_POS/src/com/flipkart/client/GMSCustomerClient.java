@@ -71,6 +71,11 @@ public class GMSCustomerClient {
 	
 	public void viewAllBookedSlots(String customerEmail) {
 		List<BookedSlot> bookedSlots= customerBusiness.viewAllBookings(customerEmail);
+//		System.out.printf("%-8s\t", "ID");
+//		System.out.printf("%-8s\t", bs.getSlotId());
+//		System.out.printf("%-8s\t", bs.getGymCenterId());
+//		System.out.printf("%-8s\t", bs.getDate());
+//		System.out.printf("%-8s\t", bs.getCustomerEmail());
 		for(BookedSlot bs: bookedSlots) {
 			System.out.printf("%-8s\t", bs.getId());
 			System.out.printf("%-8s\t", bs.getSlotId());
