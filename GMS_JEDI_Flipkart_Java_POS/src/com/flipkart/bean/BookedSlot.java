@@ -13,6 +13,8 @@ public class BookedSlot {
 	private int slotId;
 	private String customerEmail;
 	private String date;
+
+	private boolean isActive;
 	
 	public int getId() {
 		return id;
@@ -54,5 +56,13 @@ public class BookedSlot {
 
 	public void setSlotId(int slotId) {
 		this.slotId = slotId;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean active) {
+		isActive = active;
 	}
 }

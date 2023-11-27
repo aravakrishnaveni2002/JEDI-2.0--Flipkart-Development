@@ -18,17 +18,15 @@ import java.util.*;
  * 
  */
 public class GymOwnerDaoImpl implements GymOwnerDao {
+
+	Connection connection = null;
+	PreparedStatement statement = null;
 	
 	public GymOwner getGymOwnerDetails(String gymOwnerEmail) {
 		GymOwner gymOwner = new GymOwner();
-		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
+
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			System.out.println("Fetching GymOnwer Details...");
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_DETAILS);		    
 		    statement.setString(1,gymOwnerEmail);
@@ -56,13 +54,8 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 	public List<GymCenter> viewAllGymCenters(String gymOwnerEmail){
 		List<GymCenter> allGyms =  new ArrayList<>();
 		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_ALL_GYMS);
 			statement.setString(1,gymOwnerEmail);
 		    ResultSet rs = statement.executeQuery();
@@ -89,13 +82,8 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 	public List<GymCenter> viewAllApprovedGymCenters(String gymOwnerEmail){
 		List<GymCenter> allApprovedGyms =  new ArrayList<>();
 		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_ALL_APPROVED_GYMS);
 			statement.setString(1,gymOwnerEmail);
 		    ResultSet rs = statement.executeQuery();
@@ -122,13 +110,8 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 	public List<Slot> viewAllSlots(int gymCenterId){
 		List<Slot> allSlots = new ArrayList<>();
 		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_ALL_SLOTS_OF_GYM);
 			statement.setInt(1,gymCenterId);
 		    ResultSet rs = statement.executeQuery();
@@ -150,13 +133,8 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 	
 	public void addGym(GymCenter gymCenter) {
 		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.INSERT_GYM);
 
 			statement.setString(1,gymCenter.getGymOwnerEmail());
@@ -176,13 +154,8 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 
 	public void createSlot(Slot slot){
 
-		Connection connection = null;
-		PreparedStatement statement = null;
-
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.CREATE_SLOT);
 
 			statement.setInt(1,slot.getId());
@@ -198,14 +171,9 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 	}
 	
 	public void addSlots(int gymCenterId,Slot slot) {
-			
-		Connection connection = null;
-		PreparedStatement statement = null;
 		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.INSERT_SLOT);
 			
 			statement.setInt(1,gymCenterId);
@@ -222,14 +190,9 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 	}
 	
 	public boolean isApproved(String gymOwnerEmail) {
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
 		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.CHECK_GYMOWNER_APPROVEVAL);
 			statement.setString(1, gymOwnerEmail);
 		    ResultSet output = statement.executeQuery();
@@ -244,14 +207,9 @@ public class GymOwnerDaoImpl implements GymOwnerDao {
 	}
 
 	public boolean isApproved(int gymCenterId) {
-		Connection connection = null;
-		PreparedStatement statement = null;
-
 
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.CHECK_GYMCENTER_APPROVEVAL);
 			statement.setInt(1, gymCenterId);
 			ResultSet output = statement.executeQuery();

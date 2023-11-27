@@ -15,18 +15,14 @@ import com.flipkart.utils.*;
  * 
  */
 public class CustomerDaoImpl implements CustomerDao {
-	
+	Connection connection = null;
+	PreparedStatement statement = null;
 	public Customer getCustomerDetails(String customerEmail) {
 		
 		Customer customer = new Customer();
-		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
+
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			System.out.println("Fetching Cutomer deatils...");
 			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_DETAILS);		    
 		    statement.setString(1,customerEmail);
@@ -51,13 +47,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	public List<GymCenter> viewAllGymCentres() {
 		List<GymCenter> allGymCenters = new ArrayList<>();
 		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_ALL_APPROVED_GYMS);
 	
 		    ResultSet rs = statement.executeQuery();
@@ -83,15 +74,11 @@ public class CustomerDaoImpl implements CustomerDao {
 	public List<BookedSlot> viewAllBookings(String customerEmail) {
 		List<BookedSlot> allBookings = new ArrayList<>();
 		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.FETCH_ALL_BOOKEDSLOTS);
 			statement.setString(1,customerEmail);
+			statement.setInt(2,1);
 		    ResultSet rs = statement.executeQuery();
 			
 		    while (rs.next()) {
@@ -112,18 +99,15 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 	
 	public void bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
-		Connection connection = null;
-		PreparedStatement statement = null;
 
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.INSERT_BOOKEDSLOT);
 			statement.setInt(1,gymCenterId);
 			statement.setInt(2,slotId);
 			statement.setString(3,customerEmail);
 			statement.setString(4,date);
+			statement.setInt(5,1);
 			statement.executeUpdate();
 			statement.close();
 
@@ -137,13 +121,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date) {
 		BookedSlot bookedSlot = new BookedSlot();
 		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.CHECK_SLOT_ALREADY_BOOKED);
 			statement.setInt(1, slotId);
 			statement.setString(2, customerEmail);
@@ -169,16 +148,14 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 	
 	public void cancelSlot(int bookingId,String customerEmail) {
-		Connection connection = null;
-		PreparedStatement statement = null;
 
 		try {
-//			connection = DBUtils.getConnection();
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.CANCEL_BOOKING);
-			statement.setInt(1, bookingId);
-			statement.setString(2, customerEmail);
+			statement.setInt(1, 0);
+			statement.setInt(2, bookingId);
+			statement.setString(3, customerEmail);
+
 			statement.executeUpdate();
 		} catch(SQLException sqlExcep) {
 			System.out.println(sqlExcep);

@@ -14,6 +14,8 @@ import java.util.*;
 public class GMSCustomerClient {
 
 	CustomerBusinessInterface customerBusiness = new CustomerBusiness();
+
+	PaymentBusinessInterface paymentBusiness = new PaymentBusiness();
 	GymOwnerBusinessInterface gymOwnerBusiness = new GymOwnerBusiness();
 	UserBusinessInterface userBusiness = new UserBusiness();
 	
@@ -57,6 +59,13 @@ public class GMSCustomerClient {
 		System.out.println("Enter the date in DD-MM-YYYY format:");
 		String date = sc.next();
 		customerBusiness.bookSlot(gymCentreId,slotId,date,customerEmail);
+		System.out.println("Enter Card number:");
+		Long cardNumber = sc.nextLong();
+		System.out.println("Enter CVV:");
+		int cvv = sc.nextInt();
+		System.out.println("Redirecting to payment gateway .....");
+		paymentBusiness.makePayment(cardNumber, customerEmail);
+		System.out.println("Slot Booked");
 
 	}
 	

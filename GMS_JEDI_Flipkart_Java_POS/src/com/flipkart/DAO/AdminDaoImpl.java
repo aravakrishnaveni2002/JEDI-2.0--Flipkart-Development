@@ -14,7 +14,7 @@ public class AdminDaoImpl implements AdminDao{
     public List<GymCenter> viewPendingGymRequests(){
         List<GymCenter> pendingReq = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Getting Pending Requests...");
             statement = connection.prepareStatement(SQLQueries.FETCH_PENDING_GYM_CENTERS);
             ResultSet rs = statement.executeQuery();
@@ -40,7 +40,7 @@ public class AdminDaoImpl implements AdminDao{
     public List<GymOwner> viewPendingGymOwnerRequests(){
         List<GymOwner> pendingGymOwnerReq = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Getting Pending Gym Owner Requests...");
             statement = connection.prepareStatement(SQLQueries.FETCH_PENDING_OR_APPROVED_GYM_OWNERS);
             statement.setString(1,"0");
@@ -67,7 +67,7 @@ public class AdminDaoImpl implements AdminDao{
     public List<GymCenter> viewAllApprovedGyms(){
         List<GymCenter> approvedReq = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Getting Approved Requests...");
             statement = connection.prepareStatement(SQLQueries.FETCH_ALL_APPROVED_GYMS);
             ResultSet rs = statement.executeQuery();
@@ -92,7 +92,7 @@ public class AdminDaoImpl implements AdminDao{
     public List<GymOwner> viewAllApprovedGymOnwers(){
         List<GymOwner> approvedGymOwnerReq = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Getting Approved Gym Owner Requests...");
             statement = connection.prepareStatement(SQLQueries.FETCH_PENDING_OR_APPROVED_GYM_OWNERS);
             statement.setString(1,"1");
@@ -119,7 +119,7 @@ public class AdminDaoImpl implements AdminDao{
     public boolean approveGymOwnerRegistration(int gymOwnerId) {
         int result = 0;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Approving Gym Owner Requests...");
             statement = connection.prepareStatement(SQLQueries.APPROVE_GYM_OWNER);
             statement.setInt(1, gymOwnerId);
@@ -139,7 +139,7 @@ public class AdminDaoImpl implements AdminDao{
     public boolean approveGymRegistration(int gymCenterId){
         int result = 0;
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Approving Gym Center Requests...");
             statement = connection.prepareStatement(SQLQueries.APPROVE_GYM_CENTER);
             statement.setInt(1,gymCenterId);

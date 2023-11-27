@@ -4,6 +4,7 @@ import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymOwner;
 import com.flipkart.bean.User;
 import com.flipkart.constant.SQLQueries;
+import com.flipkart.utils.DBUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class UserDaoImpl implements UserDao{
     PreparedStatement statement = null;
     public void registerCustomer(Customer customer){
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Registering new customer...");
             statement = connection.prepareStatement(SQLQueries.REGISTERING_NEW_CUSTOMER);
             statement.setString(1, customer.getName());
@@ -33,7 +34,7 @@ public class UserDaoImpl implements UserDao{
 
     public void registerGymOwner(GymOwner gymOwner){
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Registering new Gym Owner...");
             statement = connection.prepareStatement(SQLQueries.REGISTERING_NEW_GYMOWNER);
             statement.setString(1, gymOwner.getName());
@@ -54,7 +55,7 @@ public class UserDaoImpl implements UserDao{
 
     public void registerUser(User user){
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             System.out.println("Registering new User...");
             statement = connection.prepareStatement(SQLQueries.REGISTERING_NEW_USER);
             statement.setString(1, user.getEmail());
@@ -73,7 +74,7 @@ public class UserDaoImpl implements UserDao{
     public List<User> viewAllCustomers(){
         List<User> customerList = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
 //            System.out.println("Listing all customers...");
             statement = connection.prepareStatement(SQLQueries.FETCH_ALL_CUSTOMERS_USERS);
             statement.setString(1,Integer.toString(3));
@@ -96,7 +97,7 @@ public class UserDaoImpl implements UserDao{
     public List<User> viewAllGymOwners(){
         List<User> gymOwnerList = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
 //            System.out.println("Listing all Gym Owners...");
             statement = connection.prepareStatement(SQLQueries.FETCH_ALL_CUSTOMERS_USERS);
             statement.setString(1,Integer.toString(2));
@@ -119,7 +120,7 @@ public class UserDaoImpl implements UserDao{
     public User getAdmin(){
         User user = new User();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GMSFlipFit", "root", "");
+            connection = DBUtils.getConnection();
             statement = connection.prepareStatement(SQLQueries.FETCH_ALL_CUSTOMERS_USERS);
             statement.setString(1,Integer.toString(1));
             ResultSet rs = statement.executeQuery();

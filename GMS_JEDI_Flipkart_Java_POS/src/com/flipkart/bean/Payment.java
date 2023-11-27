@@ -9,8 +9,8 @@ package com.flipkart.bean;
 public class Payment {
 	
 	private long cardNumber;
-	private String userName;
-	private int cvv;
+	private String customerEmail;
+//	private int cvv;
 
 	public long getCardNumber() {
 		return cardNumber;
@@ -20,20 +20,20 @@ public class Payment {
 		this.cardNumber = cardNumber;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getCustomerName() {
+		return customerEmail;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setCustomerName(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
 
-	public int getCvv() {
-		return cvv;
-	}
-
-	public void setCvv(int cvv) {
-		this.cvv = cvv;
-	}
+//	public int getCvv() {
+//		return cvv;
+//	}
+//
+//	public void setCvv(int cvv) {
+//		this.cvv = cvv;
+//	}
 	
 }

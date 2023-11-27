@@ -53,11 +53,11 @@ public class GMSApplicationClient {
 	public static void login() {
 		Scanner sc = new Scanner(System.in);
 		UserBusiness userBusiness = new UserBusiness();
-		System.out.println("Enter your username: ");
+		System.out.println("Enter your user email: ");
 		String username = sc.next();
 		System.out.println("Enter your correct password: ");
 		String password = sc.next();
-		System.out.println("Enter your role: ");
+		System.out.println("Enter your role name: ");
 		String role = sc.next();
 		switch (role) {
 

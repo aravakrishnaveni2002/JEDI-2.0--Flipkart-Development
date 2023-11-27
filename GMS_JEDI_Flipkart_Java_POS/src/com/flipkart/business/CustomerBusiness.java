@@ -47,8 +47,6 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 		}
 
         customerDao.bookSlot(gymCenterId,slotId,date,customerEmail);
-
-		System.out.println("Slot booked");
 	}
 
 	/**
