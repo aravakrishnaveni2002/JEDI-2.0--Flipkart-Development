@@ -66,7 +66,7 @@ public class GMSApplicationClient {
 		user.setEmail(username);
 		user.setPassword(password);
 		if(role.equals("Customer")){
-			user.setRoleId(1);
+			user.setRoleId(3);
 		}
 		else if(role.equals("GymOwner")){
 			user.setRoleId(2);
