@@ -132,7 +132,7 @@ public class GMSCustomerClient {
 		System.out.println("-----------------------------");
 	}
 	
-	public void customerPage(Scanner sc, String customerEmail) {
+	public void customerPage(Scanner sc, String customerEmail) throws Exception{
 		
 		while(true) {
 			System.out.println(ANSI_YELLOW + "------------------------------ \n 1. Book slot \n 2. Cancel Booked slot \n 3. View all booked Slots \n 4. View catalog \n 5. Exit \n ------------------------------ \n Enter your choice: " + ANSI_RESET);

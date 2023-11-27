@@ -168,7 +168,7 @@ public class GMSAdminClient {
 		System.out.println("-------------------------------------");
 	}
 	
-	public void adminPage(Scanner sc){
+	public void adminPage(Scanner sc) throws Exception{
 		while(true) {
 			System.out.println(ANSI_YELLOW + "------------------------------" + ANSI_RESET);
 			System.out.println(ANSI_YELLOW +"1. View All Gym Owners \n 2. View All Gyms \n 3. View Pending Gym Owner Requests \n 4. View Pending Gym Requests \n 5. Approve Gym Request \n 6. Approve Gym Owner Request \n 7. Exit \n ------------------------------ \n Enter your choice: "+ANSI_RESET);

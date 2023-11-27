@@ -5,6 +5,10 @@ import com.flipkart.bean.GymOwner;
 import com.flipkart.bean.Slot;
 
 import java.util.List;
+import com.flipkart.exception.DataEntryException;
+import com.flipkart.exception.GymDetailsNotFoundException;
+import com.flipkart.exception.NoDataFoundException;
+import com.flipkart.exception.GymNotFoundException;
 
 public interface GymOwnerBusinessInterface {
 
@@ -51,7 +55,7 @@ public interface GymOwnerBusinessInterface {
      This method allows a gym owner to add details of a particular gym.
      @param gymCenter The Gym object representing the gym details
      */
-    public void addGym(GymCenter gymCenter);
+    public void addGym(GymCenter gymCenter) throws GymDetailsNotFoundException, DataEntryException;
 
     /**
 
@@ -66,7 +70,7 @@ public interface GymOwnerBusinessInterface {
      * @return The list of GymCenter objects representing the gym details
      */
 
-    public List<GymCenter> viewAllGymCenters(String gymOwnerEmail);
+    public List<GymCenter> viewAllGymCenters(String gymOwnerEmail) throws GymNotFoundException, NoDataFoundException;
 
     /**
      * This method fetches the all approved gym details that belong to a gym owner.

@@ -54,7 +54,7 @@ public class GMSGymOwnerClient {
 		userBusiness.registerGymOwner(gymOwner);
 	}
 	
-	public void registerGym(Scanner sc) {
+	public void registerGym(Scanner sc) throws Exception{
 		GymCenter gymCenter = new GymCenter();
 		System.out.println("Add gym Details: ");
 		System.out.print("Enter gym Name: ");
@@ -68,7 +68,7 @@ public class GMSGymOwnerClient {
 		gymOwnerBusiness.addGym(gymCenter);
 	}
 	
-	public void getGymOwnerDetails(String gymOwnerEmail) {
+	public void getGymOwnerDetails(String gymOwnerEmail) throws Exception{
 		GymOwner gymOwner = gymOwnerBusiness.getGymOwnerDetails(gymOwnerEmail);
 		System.out.printf("%-15s\t", "Id");
 		System.out.printf("%-15s\t", "Name");
@@ -99,7 +99,7 @@ public class GMSGymOwnerClient {
 		
 	}
 	
-	public void getAllGymDetails() {
+	public void getAllGymDetails() throws Exception{
 		List<GymCenter> allGyms = gymOwnerBusiness.viewAllGymCenters(gymOwner.getEmail());
 		System.out.printf("%-15s\t", "Id");
 		System.out.printf("%-15s\t", "Name");
@@ -129,7 +129,7 @@ public class GMSGymOwnerClient {
 		System.out.println("-------------------------------------");
 	}
 	
-	public void getAllApprovedGymDetails() {
+	public void getAllApprovedGymDetails() throws Exception{
 		List<GymCenter> allApprovedGyms = gymOwnerBusiness.viewAllApprovedGymCenters(gymOwner.getEmail());
 		System.out.printf("%-15s\t", "Id");
 		System.out.printf("%-15s\t", "Name");
@@ -147,7 +147,7 @@ public class GMSGymOwnerClient {
 		System.out.println("-------------------------------------");
 	}
 	
-	public void addSlots(Scanner sc, String gymOwnerEmail) {
+	public void addSlots(Scanner sc, String gymOwnerEmail) throws Exception{
 		getAllGymDetails();
 		System.out.println("Enter the gymCenter id for which you want to add slots: ");
 		gymCenter.setId(sc.nextInt());
@@ -169,7 +169,7 @@ public class GMSGymOwnerClient {
 		}
 	}
 	
-	public void viewAllSlots(int gymCenterId) {
+	public void viewAllSlots(int gymCenterId) throws Exception{
 		System.out.println("Listing all existing slots: ");
 		List<Slot> allSlots = gymOwnerBusiness.viewAllSlots(gymCenterId);
 		System.out.printf("%-15s\t", "Id");
@@ -183,13 +183,13 @@ public class GMSGymOwnerClient {
 		System.out.println("-------------------------------------");
 	}
 	
-	public void viewAllSlots(Scanner sc) {
+	public void viewAllSlots(Scanner sc) throws Exception{
 		getAllApprovedGymDetails();
 		System.out.println("Enter the gymCenter id for which you want to see all slots: ");
 		viewAllSlots(sc.nextInt());
 	}
 	
-	public void gymOwnerPage(Scanner sc,String gymOwnerEmail) {
+	public void gymOwnerPage(Scanner sc,String gymOwnerEmail) throws Exception{
 		if(!gymOwnerBusiness.isApproved(gymOwnerEmail)) {
 			System.out.println(ANSI_RED + "You are not a Authorized Gym Owner" + ANSI_RESET);
 //			System.out.println("You are not a Authorized Gym Owner");

@@ -51,7 +51,7 @@ public class GMSApplicationClient {
 		return false;
 	}
 
-	public static void login() {
+	public static void login() throws Exception{
 		Scanner sc = new Scanner(System.in);
 		UserBusiness userBusiness = new UserBusiness();
 		System.out.println("Enter your user email: ");
@@ -98,7 +98,7 @@ public class GMSApplicationClient {
 		}
 	}
 	
-	public static void mainPage() {
+	public static void mainPage() throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println(ANSI_YELLOW + "Welcome to FlipFit Application \n ------------------------------ \n Menu: \n 1. Login \n 2. Customer Registration \n 3. GymOwner Registration \n 4. exit \n ------------------------------" + ANSI_RESET);
 //		System.out.println("Welcome to FlipFit Application");
@@ -110,37 +110,40 @@ public class GMSApplicationClient {
 //		System.out.println("4. exit");
 //		System.out.println("------------------------------");
 		Scanner sc = new Scanner(System.in);
-		
-		
-		int choice = sc.nextInt();
-		
-		switch(choice) {
-		case 1:
-			login();
-			break;
-		case 2:
-			GMSCustomerClient Customer = new GMSCustomerClient();
-			Customer.customerRegistration(sc);
-			System.out.println("Please Login");
-			login();
-			break;
-		case 3:
-			GMSGymOwnerClient Owner = new GMSGymOwnerClient();
-			Owner.registerGymOwner(sc);
-			System.out.println("Please Login");
-			login();
-			break;
-		case 4:
-			System.out.println("Exiting.....");
-			System.exit(0);
-			break;
-		default:
-			System.out.println(ANSI_RED + "Wrong Choice" + ANSI_RESET);
+
+		try {
+			int choice = sc.nextInt();
+
+			switch (choice) {
+				case 1:
+					login();
+					break;
+				case 2:
+					GMSCustomerClient Customer = new GMSCustomerClient();
+					Customer.customerRegistration(sc);
+					System.out.println("Please Login");
+					login();
+					break;
+				case 3:
+					GMSGymOwnerClient Owner = new GMSGymOwnerClient();
+					Owner.registerGymOwner(sc);
+					System.out.println("Please Login");
+					login();
+					break;
+				case 4:
+					System.out.println("Exiting.....");
+					System.exit(0);
+					break;
+				default:
+					System.out.println(ANSI_RED + "Wrong Choice" + ANSI_RESET);
 //			System.out.println("Wrong choice");
+					mainPage();
+			}
+		} catch (InputMismatchException excep) {
+			System.out.println("Please give relevant input!");
 			mainPage();
 		}
 	}
-
 	public static void main(String[] args) throws Exception {
 		mainPage();
 	}
