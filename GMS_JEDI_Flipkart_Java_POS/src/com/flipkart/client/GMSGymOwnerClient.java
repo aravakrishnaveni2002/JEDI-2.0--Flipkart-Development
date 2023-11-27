@@ -12,7 +12,8 @@ import java.util.*;
  * 
  */
 public class GMSGymOwnerClient {
-	
+
+	public static final String ANSI_YELLOW = "\u001B[33m";
 	GymOwner gymOwner = new GymOwner();
 	GymCenter gymCenter = new GymCenter();
 	User user = new User();
@@ -69,30 +70,30 @@ public class GMSGymOwnerClient {
 	
 	public void getGymOwnerDetails(String gymOwnerEmail) {
 		GymOwner gymOwner = gymOwnerBusiness.getGymOwnerDetails(gymOwnerEmail);
-		System.out.printf("%-8s\t", "Id");
-		System.out.printf("%-8s\t", "Name");
-		System.out.printf("%-8s\t", "Email");
-		System.out.printf("%-8s\t", "Address");
-		System.out.printf("%-8s\t", "GstNumber");
-		System.out.printf("%-8s\t", "Phone");
+		System.out.printf("%-15s\t", "Id");
+		System.out.printf("%-15s\t", "Name");
+		System.out.printf("%-15s\t", "Email");
+		System.out.printf("%-15s\t", "Address");
+		System.out.printf("%-15s\t", "GstNumber");
+		System.out.printf("%-15s\t", "Phone");
 		System.out.println();
-		System.out.printf("%-8s\t", gymOwner.getId());
-		System.out.printf("%-8s\t", gymOwner.getName());
-		System.out.printf("%-8s\t", gymOwner.getEmail());
-		System.out.printf("%-8s\t", gymOwner.getAddress());
-		System.out.printf("%-8s\t", gymOwner.getGstNumber());
-		System.out.printf("%-8s\t", gymOwner.getPhone());
+		System.out.printf("%-15s\t", gymOwner.getId());
+		System.out.printf("%-15s\t", gymOwner.getName());
+		System.out.printf("%-15s\t", gymOwner.getEmail());
+		System.out.printf("%-15s\t", gymOwner.getAddress());
+		System.out.printf("%-15s\t", gymOwner.getGstNumber());
+		System.out.printf("%-15s\t", gymOwner.getPhone());
 		if(gymOwner.isApproved())
 		{
-			System.out.printf("%-8s\t", ANSI_GREEN + "Yes" + ANSI_RESET);
+			System.out.printf("%-15s\t", ANSI_GREEN + "Yes" + ANSI_RESET);
 //			System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
-//			System.out.printf("%-8s\t", "Yes");
+//			System.out.printf("%-15s\t", "Yes");
 		}
 		else
 		{
-			System.out.printf("%-8s\t", ANSI_RED + "No" + ANSI_RESET);
+			System.out.printf("%-15s\t", ANSI_RED + "No" + ANSI_RESET);
 //			System.out.println(ANSI_RED + "No" + ANSI_RESET);
-//			System.out.printf("%-8s\t", "No");
+//			System.out.printf("%-15s\t", "No");
 		}
 		System.out.println("");
 		
@@ -100,28 +101,28 @@ public class GMSGymOwnerClient {
 	
 	public void getAllGymDetails() {
 		List<GymCenter> allGyms = gymOwnerBusiness.viewAllGymCenters(gymOwner.getEmail());
-		System.out.printf("%-8s\t", "Id");
-		System.out.printf("%-8s\t", "Name");
-		System.out.printf("%-8s\t", "Location");
-		System.out.printf("%-8s\t", "No of Seats");
+		System.out.printf("%-15s\t", "Id");
+		System.out.printf("%-15s\t", "Name");
+		System.out.printf("%-15s\t", "Location");
+		System.out.printf("%-15s\t", "No of Seats");
 		System.out.println();
 		for(GymCenter gym : allGyms) {
-			System.out.printf("%-8s\t", gym.getId());
-			System.out.printf("%-8s\t", gym.getName());
-			System.out.printf("%-8s\t", gym.getLocation());
-			System.out.printf("%-8s\t", gym.getNoOfSeats());
+			System.out.printf("%-15s\t", gym.getId());
+			System.out.printf("%-15s\t", gym.getName());
+			System.out.printf("%-15s\t", gym.getLocation());
+			System.out.printf("%-15s\t", gym.getNoOfSeats());
 			
 			if(gym.isApproved())
 			{
-				System.out.printf("%-8s\t", ANSI_GREEN + "Yes" + ANSI_RESET);
+				System.out.printf("%-15s\t", ANSI_GREEN + "Yes" + ANSI_RESET);
 //				System.out.println(ANSI_GREEN + "Yes" + ANSI_RESET);
-//				System.out.printf("%-8s\t", "Yes");
+//				System.out.printf("%-15s\t", "Yes");
 			}
 			else
 			{
-				System.out.printf("%-8s\t", ANSI_RED + "No" + ANSI_RESET);
+				System.out.printf("%-15s\t", ANSI_RED + "No" + ANSI_RESET);
 //				System.out.println(ANSI_RED + "No" + ANSI_RESET);
-//				System.out.printf("%-8s\t", "No");
+//				System.out.printf("%-15s\t", "No");
 			}
 			System.out.println("");
 		}
@@ -130,17 +131,17 @@ public class GMSGymOwnerClient {
 	
 	public void getAllApprovedGymDetails() {
 		List<GymCenter> allApprovedGyms = gymOwnerBusiness.viewAllApprovedGymCenters(gymOwner.getEmail());
-		System.out.printf("%-8s\t", "Id");
-		System.out.printf("%-8s\t", "Name");
-		System.out.printf("%-8s\t", "Location");
-		System.out.printf("%-8s\t", "No of Seats");
+		System.out.printf("%-15s\t", "Id");
+		System.out.printf("%-15s\t", "Name");
+		System.out.printf("%-15s\t", "Location");
+		System.out.printf("%-15s\t", "No of Seats");
 		System.out.println();
 		for(GymCenter gym : allApprovedGyms) {
-			System.out.printf("%-8s\t", gym.getId());
-			System.out.printf("%-8s\t", gym.getName());
-			System.out.printf("%-8s\t", gym.getLocation());
-			System.out.printf("%-8s\t", gym.getNoOfSeats());
-			System.out.printf("%-8s\t", "Yes");
+			System.out.printf("%-15s\t", gym.getId());
+			System.out.printf("%-15s\t", gym.getName());
+			System.out.printf("%-15s\t", gym.getLocation());
+			System.out.printf("%-15s\t", gym.getNoOfSeats());
+			System.out.printf("%-15s\t", "Yes");
 			System.out.println("");
 		}
 		System.out.println("-------------------------------------");
@@ -171,12 +172,12 @@ public class GMSGymOwnerClient {
 	public void viewAllSlots(int gymCenterId) {
 		System.out.println("Listing all existing slots: ");
 		List<Slot> allSlots = gymOwnerBusiness.viewAllSlots(gymCenterId);
-		System.out.printf("%-8s\t", "Id");
-		System.out.printf("%-8s\t", "Time");
+		System.out.printf("%-15s\t", "Id");
+		System.out.printf("%-15s\t", "Time");
 		System.out.println();
 		for(Slot slot : allSlots) {
-			System.out.printf("%-8s\t", slot.getId());
-			System.out.printf("%-8s\t", slot.getTime());
+			System.out.printf("%-15s\t", slot.getId());
+			System.out.printf("%-15s\t", slot.getTime());
 			System.out.println("");
 		}
 		System.out.println("-------------------------------------");
@@ -197,15 +198,16 @@ public class GMSGymOwnerClient {
 		else {
 			gymOwner.setEmail(gymOwnerEmail);
 			while(true) {
+				System.out.println(ANSI_YELLOW + "------------------------------ \n 1. Add Gyms \n 2. View All Gyms \n 3. Add Slots in a Gym \n 4. View All Slots of a Gym \n 5. View Own Details \n 6. Exit \n ------------------------------ \n Enter your choice: " + ANSI_RESET);
 				System.out.println("------------------------------");
-				System.out.println("1. Add Gyms");
-				System.out.println("2. View All Gyms");
-				System.out.println("3. Add Slots in a Gym");
-				System.out.println("4. View All Slots of a Gym");
-				System.out.println("5. View Own Details");
-				System.out.println("6. Exit");
-				System.out.println("------------------------------");
-				System.out.print("Enter your choice: ");
+//				System.out.println("1. Add Gyms");
+//				System.out.println("2. View All Gyms");
+//				System.out.println("3. Add Slots in a Gym");
+//				System.out.println("4. View All Slots of a Gym");
+//				System.out.println("5. View Own Details");
+//				System.out.println("6. Exit");
+//				System.out.println("------------------------------");
+//				System.out.print("Enter your choice: ");
 				int choice = sc.nextInt();
 				switch (choice) {
 				case 1:

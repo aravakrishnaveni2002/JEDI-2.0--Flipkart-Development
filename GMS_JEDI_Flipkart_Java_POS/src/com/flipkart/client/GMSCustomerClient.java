@@ -21,6 +21,7 @@ public class GMSCustomerClient {
 	
 	Customer customer = new Customer();
 	User user = new User();
+	public static final String ANSI_YELLOW = "\u001B[33m";
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
 	public static final String ANSI_RED = "\u001B[31m";
@@ -84,46 +85,46 @@ public class GMSCustomerClient {
 	
 	public void viewAllBookedSlots(String customerEmail) {
 		List<BookedSlot> bookedSlots= customerBusiness.viewAllBookings(customerEmail);
-//		System.out.printf("%-8s\t", "ID");
-//		System.out.printf("%-8s\t", bs.getSlotId());
-//		System.out.printf("%-8s\t", bs.getGymCenterId());
-//		System.out.printf("%-8s\t", bs.getDate());
-//		System.out.printf("%-8s\t", bs.getCustomerEmail());
-		System.out.printf("%-8s\t","Id");
-		System.out.printf("%-8s\t","Slot Id");
-		System.out.printf("%-8s\t","GymCenterID");
-		System.out.printf("%-8s\t","Date");
-		System.out.printf("%-8s\t","Customer Email");
+//		System.out.printf("%-15s\t", "ID");
+//		System.out.printf("%-15s\t", bs.getSlotId());
+//		System.out.printf("%-15s\t", bs.getGymCenterId());
+//		System.out.printf("%-15s\t", bs.getDate());
+//		System.out.printf("%-15s\t", bs.getCustomerEmail());
+		System.out.printf("%-15s\t","Id");
+		System.out.printf("%-15s\t","Slot Id");
+		System.out.printf("%-15s\t","GymCenterID");
+		System.out.printf("%-15s\t","Date");
+		System.out.printf("%-15s\t","Customer Email");
 		System.out.println();
 		for(BookedSlot bs: bookedSlots) {
-			System.out.printf("%-8s\t", bs.getId());
-			System.out.printf("%-8s\t", bs.getSlotId());
-			System.out.printf("%-8s\t", bs.getGymCenterId());
-			System.out.printf("%-8s\t", bs.getDate());
-			System.out.printf("%-8s\t", bs.getCustomerEmail());
+			System.out.printf("%-15s\t", bs.getId());
+			System.out.printf("%-15s\t", bs.getSlotId());
+			System.out.printf("%-15s\t", bs.getGymCenterId());
+			System.out.printf("%-15s\t", bs.getDate());
+			System.out.printf("%-15s\t", bs.getCustomerEmail());
 			System.out.println();
 		}
 	}
 	
 	public void viewCatalog() {
 		List<GymCenter> allApprovedGyms = customerBusiness.viewAllGymCentres();
-		System.out.printf("%-8s\t","Id");
-		System.out.printf("%-8s\t","Location");
-		System.out.printf("%-8s\t","No of Seats");
+		System.out.printf("%-15s\t","Id");
+		System.out.printf("%-15s\t","Location");
+		System.out.printf("%-15s\t","No of Seats");
 		System.out.println();
 		for(GymCenter gym: allApprovedGyms) {
-			System.out.printf("%-8s\t", gym.getId());
-			System.out.printf("%-8s\t", gym.getLocation());
-			System.out.printf("%-8s\t", gym.getNoOfSeats());
-			System.out.printf("%-8s\t", "Yes");
+			System.out.printf("%-15s\t", gym.getId());
+			System.out.printf("%-15s\t", gym.getLocation());
+			System.out.printf("%-15s\t", gym.getNoOfSeats());
+			System.out.printf("%-15s\t", "Yes");
 			System.out.println("Listing all available slots");
 			List<Slot> allAvilableSlots = gymOwnerBusiness.viewAllSlots(gym.getId());
-			System.out.printf("%-8s\t","Id");
-			System.out.printf("%-8s\t","Time");
+			System.out.printf("%-15s\t","Id");
+			System.out.printf("%-15s\t","Time");
 			System.out.println();
 			for(Slot slot: allAvilableSlots) {
-				System.out.printf("%-8s\t", slot.getId());
-				System.out.printf("%-8s\t", slot.getTime());
+				System.out.printf("%-15s\t", slot.getId());
+				System.out.printf("%-15s\t", slot.getTime());
 				System.out.println();
 			}
 			System.out.println("-----------------------------");
@@ -134,14 +135,15 @@ public class GMSCustomerClient {
 	public void customerPage(Scanner sc, String customerEmail) {
 		
 		while(true) {
-			System.out.println("------------------------------");
-			System.out.println("1. Book slot");
-			System.out.println("2. Cancel Booked slot");
-			System.out.println("3. View all booked Slots");
-			System.out.println("4. View catalog");
-			System.out.println("5. Exit");
-			System.out.println("------------------------------");
-			System.out.print("Enter your choice: ");
+			System.out.println(ANSI_YELLOW + "------------------------------ \n 1. Book slot \n 2. Cancel Booked slot \n 3. View all booked Slots \n 4. View catalog \n 5. Exit \n ------------------------------ \n Enter your choice: " + ANSI_RESET);
+//			System.out.println("------------------------------");
+//			System.out.println("1. Book slot");
+//			System.out.println("2. Cancel Booked slot");
+//			System.out.println("3. View all booked Slots");
+//			System.out.println("4. View catalog");
+//			System.out.println("5. Exit");
+//			System.out.println("------------------------------");
+//			System.out.print("Enter your choice: ");
 			int choice = sc.nextInt();
 			switch (choice) {
 			case 1:

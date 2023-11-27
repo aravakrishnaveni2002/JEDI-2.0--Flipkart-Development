@@ -12,6 +12,7 @@ import com.flipkart.business.*;
  */
 public class GMSApplicationClient {
 
+	public static final String ANSI_YELLOW = "\u001B[33m";
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
 	public static final String ANSI_RED = "\u001B[31m";
@@ -99,14 +100,15 @@ public class GMSApplicationClient {
 	
 	public static void mainPage() {
 		// TODO Auto-generated method stub
-		System.out.println("Welcome to FlipFit Application");
-		System.out.println("------------------------------");
-		System.out.println("Menu:");
-		System.out.println("1. Login");
-		System.out.println("2. Customer Registration");
-		System.out.println("3. GymOwner Registration");
-		System.out.println("4. exit");
-		System.out.println("------------------------------");
+		System.out.println(ANSI_YELLOW + "Welcome to FlipFit Application \n ------------------------------ \n Menu: \n 1. Login \n 2. Customer Registration \n 3. GymOwner Registration \n 4. exit \n ------------------------------" + ANSI_RESET);
+//		System.out.println("Welcome to FlipFit Application");
+//		System.out.println("------------------------------");
+//		System.out.println("Menu:");
+//		System.out.println("1. Login");
+//		System.out.println("2. Customer Registration");
+//		System.out.println("3. GymOwner Registration");
+//		System.out.println("4. exit");
+//		System.out.println("------------------------------");
 		Scanner sc = new Scanner(System.in);
 		
 		
