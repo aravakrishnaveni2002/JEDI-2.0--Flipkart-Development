@@ -100,11 +100,13 @@ public class GMSApplicationClient {
 	public static void mainPage() {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to FlipFit Application");
+		System.out.println("------------------------------");
 		System.out.println("Menu:");
 		System.out.println("1. Login");
 		System.out.println("2. Customer Registration");
 		System.out.println("3. GymOwner Registration");
 		System.out.println("4. exit");
+		System.out.println("------------------------------");
 		Scanner sc = new Scanner(System.in);
 		
 		

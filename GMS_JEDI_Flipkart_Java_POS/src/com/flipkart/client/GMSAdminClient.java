@@ -169,6 +169,7 @@ public class GMSAdminClient {
 	
 	public void adminPage(Scanner sc){
 		while(true) {
+			System.out.println("------------------------------");
 			System.out.println("1. View All Gym Owners");
 			System.out.println("2. View All Gyms");
 			System.out.println("3. View Pending Gym Owner Requests");
@@ -176,6 +177,7 @@ public class GMSAdminClient {
 			System.out.println("5. Approve Gym Request");
 			System.out.println("6. Approve Gym Owner Request");
 			System.out.println("7. Exit");
+			System.out.println("------------------------------");
 			System.out.print("Enter your choice: ");
 			int choice = sc.nextInt();
 			switch (choice) {

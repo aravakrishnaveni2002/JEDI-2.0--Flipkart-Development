@@ -197,12 +197,14 @@ public class GMSGymOwnerClient {
 		else {
 			gymOwner.setEmail(gymOwnerEmail);
 			while(true) {
+				System.out.println("------------------------------");
 				System.out.println("1. Add Gyms");
 				System.out.println("2. View All Gyms");
 				System.out.println("3. Add Slots in a Gym");
 				System.out.println("4. View All Slots of a Gym");
 				System.out.println("5. View Own Details");
 				System.out.println("6. Exit");
+				System.out.println("------------------------------");
 				System.out.print("Enter your choice: ");
 				int choice = sc.nextInt();
 				switch (choice) {
@@ -226,7 +228,6 @@ public class GMSGymOwnerClient {
 					break;
 				default:
 					System.out.println(ANSI_RED + "Incorrect Choice" + ANSI_RESET);
-//					System.out.println("incorrect choice");
 				}
 			}
 			

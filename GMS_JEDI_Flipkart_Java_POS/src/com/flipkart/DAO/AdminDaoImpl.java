@@ -53,6 +53,7 @@ public class AdminDaoImpl implements AdminDao{
                 gymOwner.setPhone(rs.getInt("phone"));
                 gymOwner.setGstNumber(rs.getString("gstNumber"));
                 gymOwner.setName(rs.getString("name"));
+                gymOwner.setEmail(rs.getString("email"));
 
                 pendingGymOwnerReq.add(gymOwner);
             }
@@ -75,6 +76,7 @@ public class AdminDaoImpl implements AdminDao{
             while(rs.next()){
                 GymCenter gymCenter = new GymCenter();
                 gymCenter.setId(rs.getInt("id"));
+                gymCenter.setName(rs.getString("name"));
                 gymCenter.setGymOwnerEmail(rs.getString("gymOwnerEmail"));
                 gymCenter.setLocation(rs.getString("location"));
                 gymCenter.setNoOfSeats(rs.getInt("noOfSeats"));
@@ -105,6 +107,7 @@ public class AdminDaoImpl implements AdminDao{
                 gymOwner.setPhone(rs.getInt("phone"));
                 gymOwner.setGstNumber(rs.getString("gstNumber"));
                 gymOwner.setName(rs.getString("name"));
+                gymOwner.setEmail(rs.getString("email"));
 
                 approvedGymOwnerReq.add(gymOwner);
             }
