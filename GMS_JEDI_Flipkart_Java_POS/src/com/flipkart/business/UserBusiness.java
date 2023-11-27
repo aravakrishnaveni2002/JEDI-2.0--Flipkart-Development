@@ -2,6 +2,9 @@
  * 
  */
 package com.flipkart.business;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import com.flipkart.DAO.UserDao;
 import com.flipkart.DAO.UserDaoImpl;
 import com.flipkart.bean.Customer;
@@ -59,8 +62,11 @@ public class UserBusiness implements UserBusinessInterface{
 	}
 
 	public User authenticateUser(User user) throws UserNotFoundException {
+		LocalDateTime currentTime = LocalDateTime.now();
+		DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		String formattedDate = currentTime.format(myFormat);
 		if(userDaoImpl.authenticateUser(user) != null) {
-			System.out.println(ANSI_GREEN + "Logged in Successfully" + ANSI_RESET);
+			System.out.println(ANSI_GREEN + "Logged in Successfully     " + formattedDate + ANSI_RESET);
 			return user;
 		}
 		throw new UserNotFoundException();
