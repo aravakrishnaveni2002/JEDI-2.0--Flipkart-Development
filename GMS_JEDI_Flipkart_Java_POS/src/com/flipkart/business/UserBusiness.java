@@ -14,6 +14,10 @@ import java.util.*;
  * 
  */
 public class UserBusiness implements UserBusinessInterface{
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 	UserDao userDaoImpl = new UserDaoImpl();
 	/**
 	 Registers a customer in the database.
@@ -21,7 +25,8 @@ public class UserBusiness implements UserBusinessInterface{
 	 */
 	public void registerCustomer(Customer customer) {
 		userDaoImpl.registerCustomer(customer);
-		System.out.println("Customer registered"); // Make this Green
+		System.out.println(ANSI_GREEN + "Customer registered" + ANSI_RESET);
+//		System.out.println("Customer registered"); // Make this Green
 	}
 
 	/**
@@ -59,11 +64,13 @@ public class UserBusiness implements UserBusinessInterface{
 	 */
 	public void registerGymOwner(GymOwner gymOwner) {
 		userDaoImpl.registerGymOwner(gymOwner);
-		System.out.println("GymOwner registered"); //Make this Green
+		System.out.println(ANSI_GREEN + "GymOwner registered" + ANSI_RESET);
+//		System.out.println("GymOwner registered"); //Make this Green
 	}
 
 	public void registerUser(User user) {
 		userDaoImpl.registerUser(user);
-		System.out.println("User registered"); //Make this Green
+		System.out.println(ANSI_GREEN + "User registered" + ANSI_RESET);
+//		System.out.println("User registered"); //Make this Green
 	}
 }

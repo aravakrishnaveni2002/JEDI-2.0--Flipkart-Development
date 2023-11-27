@@ -13,7 +13,11 @@ import com.flipkart.DAO.*;
  * 
  */
 public class GymOwnerBusiness implements GymOwnerBusinessInterface{
-	
+
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 	GymOwnerDao gymOwnerDao = new GymOwnerDaoImpl();
 
 	/**
@@ -33,6 +37,7 @@ public class GymOwnerBusiness implements GymOwnerBusinessInterface{
 	 */
 	public List<Slot> viewAllSlots(int gymCenterId){
 		System.out.println("Listing all Slots in  GymCenter");
+		System.out.println("-------------------------------------");
 		return gymOwnerDao.viewAllSlots(gymCenterId);
 	}
 
@@ -63,7 +68,9 @@ public class GymOwnerBusiness implements GymOwnerBusinessInterface{
 	 */
 	public void addSlots(int gymCenterId,Slot slot) {
 		gymOwnerDao.addSlots(gymCenterId, slot);
-		System.out.println("Slot added successfully");
+		System.out.println("-------------------------------------");
+		System.out.println(ANSI_GREEN + "Slot added successfully" + ANSI_RESET);
+//		System.out.println("Slot added successfully");
 	}
 
 	/**
@@ -73,7 +80,9 @@ public class GymOwnerBusiness implements GymOwnerBusinessInterface{
 	 */
 	public void addGym(GymCenter gymCenter) {
 		gymOwnerDao.addGym(gymCenter);
-		System.out.println("GymCenter added successfully");
+		System.out.println("-------------------------------------");
+		System.out.println(ANSI_GREEN + "GymCenter added successfully" + ANSI_RESET);
+//		System.out.println("GymCenter added successfully");
 	}
 
 	/**
@@ -93,6 +102,7 @@ public class GymOwnerBusiness implements GymOwnerBusinessInterface{
 
 	public List<GymCenter> viewAllGymCenters(String gymOwnerEmail){
 		System.out.println("Listing all GymCenter");
+		System.out.println("-------------------------------------");
 		return gymOwnerDao.viewAllGymCenters(gymOwnerEmail);	
 	}
 
@@ -103,6 +113,7 @@ public class GymOwnerBusiness implements GymOwnerBusinessInterface{
 	 */
 	public List<GymCenter> viewAllApprovedGymCenters(String gymOwnerEmail){
 		System.out.println("Listing all approved GymCenter");
+		System.out.println("-------------------------------------");
 		return gymOwnerDao.viewAllApprovedGymCenters(gymOwnerEmail);
 	}
 	

@@ -89,6 +89,12 @@ public class GMSCustomerClient {
 //		System.out.printf("%-8s\t", bs.getGymCenterId());
 //		System.out.printf("%-8s\t", bs.getDate());
 //		System.out.printf("%-8s\t", bs.getCustomerEmail());
+		System.out.printf("%-8s\t","Id");
+		System.out.printf("%-8s\t","Slot Id");
+		System.out.printf("%-8s\t","GymCenterID");
+		System.out.printf("%-8s\t","Date");
+		System.out.printf("%-8s\t","Customer Email");
+		System.out.println();
 		for(BookedSlot bs: bookedSlots) {
 			System.out.printf("%-8s\t", bs.getId());
 			System.out.printf("%-8s\t", bs.getSlotId());
@@ -101,6 +107,10 @@ public class GMSCustomerClient {
 	
 	public void viewCatalog() {
 		List<GymCenter> allApprovedGyms = customerBusiness.viewAllGymCentres();
+		System.out.printf("%-8s\t","Id");
+		System.out.printf("%-8s\t","Location");
+		System.out.printf("%-8s\t","No of Seats");
+		System.out.println();
 		for(GymCenter gym: allApprovedGyms) {
 			System.out.printf("%-8s\t", gym.getId());
 			System.out.printf("%-8s\t", gym.getLocation());
@@ -108,6 +118,9 @@ public class GMSCustomerClient {
 			System.out.printf("%-8s\t", "Yes");
 			System.out.println("Listing all available slots");
 			List<Slot> allAvilableSlots = gymOwnerBusiness.viewAllSlots(gym.getId());
+			System.out.printf("%-8s\t","Id");
+			System.out.printf("%-8s\t","Time");
+			System.out.println();
 			for(Slot slot: allAvilableSlots) {
 				System.out.printf("%-8s\t", slot.getId());
 				System.out.printf("%-8s\t", slot.getTime());

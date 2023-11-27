@@ -69,6 +69,13 @@ public class GMSGymOwnerClient {
 	
 	public void getGymOwnerDetails(String gymOwnerEmail) {
 		GymOwner gymOwner = gymOwnerBusiness.getGymOwnerDetails(gymOwnerEmail);
+		System.out.printf("%-8s\t", "Id");
+		System.out.printf("%-8s\t", "Name");
+		System.out.printf("%-8s\t", "Email");
+		System.out.printf("%-8s\t", "Address");
+		System.out.printf("%-8s\t", "GstNumber");
+		System.out.printf("%-8s\t", "Phone");
+		System.out.println();
 		System.out.printf("%-8s\t", gymOwner.getId());
 		System.out.printf("%-8s\t", gymOwner.getName());
 		System.out.printf("%-8s\t", gymOwner.getEmail());
@@ -93,6 +100,11 @@ public class GMSGymOwnerClient {
 	
 	public void getAllGymDetails() {
 		List<GymCenter> allGyms = gymOwnerBusiness.viewAllGymCenters(gymOwner.getEmail());
+		System.out.printf("%-8s\t", "Id");
+		System.out.printf("%-8s\t", "Name");
+		System.out.printf("%-8s\t", "Location");
+		System.out.printf("%-8s\t", "No of Seats");
+		System.out.println();
 		for(GymCenter gym : allGyms) {
 			System.out.printf("%-8s\t", gym.getId());
 			System.out.printf("%-8s\t", gym.getName());
@@ -118,6 +130,11 @@ public class GMSGymOwnerClient {
 	
 	public void getAllApprovedGymDetails() {
 		List<GymCenter> allApprovedGyms = gymOwnerBusiness.viewAllApprovedGymCenters(gymOwner.getEmail());
+		System.out.printf("%-8s\t", "Id");
+		System.out.printf("%-8s\t", "Name");
+		System.out.printf("%-8s\t", "Location");
+		System.out.printf("%-8s\t", "No of Seats");
+		System.out.println();
 		for(GymCenter gym : allApprovedGyms) {
 			System.out.printf("%-8s\t", gym.getId());
 			System.out.printf("%-8s\t", gym.getName());
@@ -141,7 +158,6 @@ public class GMSGymOwnerClient {
 		else {
 			viewAllSlots(gymCenter.getId());
 			System.out.println("Add slot timing: ");
-
 			Slot slot = new Slot();
 			slot.setTime(sc.next());
 			System.out.println("Add slot Id: ");
@@ -155,6 +171,9 @@ public class GMSGymOwnerClient {
 	public void viewAllSlots(int gymCenterId) {
 		System.out.println("Listing all existing slots: ");
 		List<Slot> allSlots = gymOwnerBusiness.viewAllSlots(gymCenterId);
+		System.out.printf("%-8s\t", "Id");
+		System.out.printf("%-8s\t", "Time");
+		System.out.println();
 		for(Slot slot : allSlots) {
 			System.out.printf("%-8s\t", slot.getId());
 			System.out.printf("%-8s\t", slot.getTime());

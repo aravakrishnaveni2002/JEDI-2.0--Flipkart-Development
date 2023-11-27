@@ -202,7 +202,8 @@ public class GMSAdminClient {
 				break;
 
 			default:
-				System.out.println("Wrong choice");
+				System.out.println(ANSI_RED + "Wrong Choice" + ANSI_RESET);
+//				System.out.println("Wrong choice");
 			}
 		}
 	}

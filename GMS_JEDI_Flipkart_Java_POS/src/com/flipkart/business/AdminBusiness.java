@@ -10,6 +10,10 @@ import java.util.*;
  * This class implements the AdminBusinessInterface and provides the functionality for admin operations in the Gym Management System.
  */
 public class AdminBusiness implements AdminBusinessInterface{
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 	AdminDao adminImpl = new AdminDaoImpl();
 
 	/**
@@ -18,6 +22,7 @@ public class AdminBusiness implements AdminBusinessInterface{
 	 */
 	public List<GymCenter> viewPendingGymRequests() {
 		System.out.println("All pending Gym requests");
+		System.out.println("-------------------------------------");
 		return adminImpl.viewPendingGymRequests();
 	}
 
@@ -27,6 +32,7 @@ public class AdminBusiness implements AdminBusinessInterface{
 	 */
 	public List<GymOwner> viewPendingGymOwnerRequests() {
 		System.out.println("All pending GymOwner requests");
+		System.out.println("-------------------------------------");
 		return adminImpl.viewPendingGymOwnerRequests();
 	}
 
@@ -35,8 +41,9 @@ public class AdminBusiness implements AdminBusinessInterface{
 	 * @param gymOwnerId The ID of the gymOwner to be approved
 	 */
     public boolean approveGymOwnerRegistration(int gymOwnerId){
-
-        System.out.println("GymOwner Approved Successfully");
+		System.out.println("-------------------------------------");
+		System.out.println(ANSI_GREEN + "GymOwner Approved Successfully" + ANSI_RESET);
+//        System.out.println("GymOwner Approved Successfully");
         return adminImpl.approveGymOwnerRegistration(gymOwnerId);
     }
 
@@ -45,7 +52,8 @@ public class AdminBusiness implements AdminBusinessInterface{
 	 * @param gymCenterId The ID of the gym request to be approved
 	 */
     public boolean approveGymRegistration(int gymCenterId){
-        System.out.println("Gym Approved Successfully");
+		System.out.println(ANSI_GREEN + "Gym Approved Successfully" + ANSI_RESET);
+//        System.out.println("Gym Approved Successfully");
         return adminImpl.approveGymRegistration(gymCenterId);
     }
 	/**
@@ -54,6 +62,7 @@ public class AdminBusiness implements AdminBusinessInterface{
 	 */
     public List<GymOwner> viewAllApprovedGymOnwers() {
     	System.out.println("All GymOwners");
+		System.out.println("-------------------------------------");
 		return adminImpl.viewAllApprovedGymOnwers();
     }
 
@@ -63,6 +72,7 @@ public class AdminBusiness implements AdminBusinessInterface{
 	 */
     public List<GymCenter> viewAllApprovedGyms() {
     	System.out.println("All Gyms");
+		System.out.println("-------------------------------------");
 		return adminImpl.viewAllApprovedGyms();
     }
 }
