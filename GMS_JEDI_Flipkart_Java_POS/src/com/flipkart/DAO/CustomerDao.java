@@ -21,9 +21,9 @@ public interface CustomerDao {
 	
 	public List<BookedSlot> viewAllBookings(String email);
 	
-	public void bookSlot(int gymCenterId,int slotId,String date,String customerEmail);
+	public boolean bookSlot(int gymCenterId,int slotId,String date,String customerEmail);
 	
 	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date);
 	
-	public void cancelSlot(int bookingId,String customerEmail);
+	public boolean cancelSlot(int bookingId,String customerEmail);
 }

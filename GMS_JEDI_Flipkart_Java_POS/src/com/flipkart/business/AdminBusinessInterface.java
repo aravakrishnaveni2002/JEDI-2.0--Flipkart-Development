@@ -2,6 +2,8 @@ package com.flipkart.business;
 
 import com.flipkart.bean.GymCenter;
 import com.flipkart.bean.GymOwner;
+import com.flipkart.exception.GymDetailsNotFoundException;
+import com.flipkart.exception.GymOwnerNotFoundException;
 
 import java.util.List;
 
@@ -23,13 +25,13 @@ public interface AdminBusinessInterface {
      * Approves a single gym owner request.
      * @param gymOwnerId The ID of the request to be approved
      */
-    public boolean approveGymOwnerRegistration(int gymOwnerId);
+    public boolean approveGymOwnerRegistration(int gymOwnerId) throws GymOwnerNotFoundException;
 
     /**
      * Approves a single gym request.
      * @param gymCenterId The ID of the gym request to be approved
      */
-    public boolean approveGymRegistration(int gymCenterId);
+    public boolean approveGymRegistration(int gymCenterId) throws GymDetailsNotFoundException;
 
     /**
      * Retrieves a list of all gym owners in the system.

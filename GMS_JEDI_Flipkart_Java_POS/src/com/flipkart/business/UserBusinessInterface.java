@@ -3,6 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymOwner;
 import com.flipkart.bean.User;
+import com.flipkart.exception.UserNotFoundException;
 
 import java.util.List;
 
@@ -34,5 +35,7 @@ public interface UserBusinessInterface {
     public void registerGymOwner(GymOwner gymOwner);
 
     public void registerUser(User user);
+
+    public User authenticateUser(User user) throws UserNotFoundException;
 
 }

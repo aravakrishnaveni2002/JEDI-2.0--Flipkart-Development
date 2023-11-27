@@ -4,6 +4,9 @@
 package com.flipkart.business;
 import com.flipkart.bean.*;
 import com.flipkart.DAO.*;
+import com.flipkart.exception.GymDetailsNotFoundException;
+import com.flipkart.exception.GymOwnerNotFoundException;
+
 import java.util.*;
 
 /**
@@ -40,21 +43,27 @@ public class AdminBusiness implements AdminBusinessInterface{
 	 * Approves a single gym owner request.
 	 * @param gymOwnerId The ID of the gymOwner to be approved
 	 */
-    public boolean approveGymOwnerRegistration(int gymOwnerId){
+    public boolean approveGymOwnerRegistration(int gymOwnerId) throws GymOwnerNotFoundException {
 		System.out.println("-------------------------------------");
-		System.out.println(ANSI_GREEN + "GymOwner Approved Successfully" + ANSI_RESET);
-//        System.out.println("GymOwner Approved Successfully");
-        return adminImpl.approveGymOwnerRegistration(gymOwnerId);
+        if(adminImpl.approveGymOwnerRegistration(gymOwnerId) == true) {
+			System.out.println(ANSI_GREEN + "GymOwner Approved Successfully" + ANSI_RESET);
+			return true;
+		}
+		throw new GymOwnerNotFoundException();
     }
 
 	/**
 	 * Approves a single gym request.
 	 * @param gymCenterId The ID of the gym request to be approved
 	 */
-    public boolean approveGymRegistration(int gymCenterId){
-		System.out.println(ANSI_GREEN + "Gym Approved Successfully" + ANSI_RESET);
+    public boolean approveGymRegistration(int gymCenterId) throws GymDetailsNotFoundException {
+
 //        System.out.println("Gym Approved Successfully");
-        return adminImpl.approveGymRegistration(gymCenterId);
+       if(adminImpl.approveGymRegistration(gymCenterId) == true){
+		   System.out.println(ANSI_GREEN + "Gym Approved Successfully" + ANSI_RESET);
+		   return true;
+	   }
+	   throw new GymDetailsNotFoundException();
     }
 	/**
 	 * Retrieves a list of all gym owners in the system.

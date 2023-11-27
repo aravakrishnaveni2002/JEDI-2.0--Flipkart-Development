@@ -6,6 +6,8 @@ import com.flipkart.business.AdminBusiness;
 import com.flipkart.bean.GymCenter;
 import com.flipkart.bean.GymOwner;
 import com.flipkart.business.AdminBusinessInterface;
+import com.flipkart.exception.GymDetailsNotFoundException;
+import com.flipkart.exception.GymOwnerNotFoundException;
 
 import java.util.Scanner;
 import java.util.List;
@@ -22,16 +24,25 @@ public class GMSAdminClient {
 	public static final String ANSI_BLACK = "\u001B[30m";
 	public static final String ANSI_RED = "\u001B[31m";
 	public static final String ANSI_GREEN = "\u001B[32m";
-	public void approveGymOwnerRequest(Scanner sc) {
+	public void approveGymOwnerRequest(Scanner sc) throws Exception{
 		System.out.println("Enter the gymOwner Id");
 		int gymOwnerId = sc.nextInt();
-		adminBusiness.approveGymOwnerRegistration(gymOwnerId);
+		try{
+			adminBusiness.approveGymOwnerRegistration(gymOwnerId);
+		} catch (GymOwnerNotFoundException ge){
+			System.out.println(ANSI_RED + ge.getMessage() + ANSI_RESET);
+		}
+
 	}
 	
-	public void approveGymRequest(Scanner sc) {
+	public void approveGymRequest(Scanner sc) throws Exception{
 		System.out.println("Enter the gym Id");
 		int gymId = sc.nextInt();
-		adminBusiness.approveGymRegistration(gymId);
+		try{
+			adminBusiness.approveGymRegistration(gymId);
+		} catch (GymDetailsNotFoundException ge){
+			System.out.println(ANSI_RED + ge.getMessage() + ANSI_RESET);
+		}
 	}
 	
 	public void viewPendingGymRequests() {

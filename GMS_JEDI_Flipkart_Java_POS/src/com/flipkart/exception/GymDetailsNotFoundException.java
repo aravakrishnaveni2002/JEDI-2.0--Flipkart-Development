@@ -1,7 +1,8 @@
 package com.flipkart.exception;
 
 public class GymDetailsNotFoundException extends Exception {
-    public GymDetailsNotFoundException() {
-        System.out.println("GymDetails not found");
+
+    public String getMessage() {
+        return "Oops! GymDetails not found";
     }
 }

@@ -6,6 +6,7 @@ import java.util.*;
 import com.flipkart.bean.*;
 import com.flipkart.client.*;
 import com.flipkart.business.*;
+import com.flipkart.exception.UserNotFoundException;
 
 /**
  * 
@@ -60,41 +61,40 @@ public class GMSApplicationClient {
 		String password = sc.next();
 		System.out.println("Enter your role name: ");
 		String role = sc.next();
-		switch (role) {
 
-			case "Customer":
-				if(check_customer_authentication(userBusiness,username,password))
-				{
+		User user = new User();
+		user.setEmail(username);
+		user.setPassword(password);
+		if(role.equals("Customer")){
+			user.setRoleId(1);
+		}
+		else if(role.equals("GymOwner")){
+			user.setRoleId(2);
+		}
+		else if(role.equals("Admin")){
+			user.setRoleId(1);
+		}
+		try{
+			user = userBusiness.authenticateUser(user);
+			switch(user.getRoleId()) {
+				case 3:
 					GMSCustomerClient customer = new GMSCustomerClient();
-					customer.customerPage(sc, username);
-				}
-				else
-				{
-					System.out.println(ANSI_RED + "Invalid Customer" + ANSI_RESET);
-					login();
-				}
-			    break;
-		    case "GymOwner":
-				if(check_gymOwner_authentication(userBusiness,username,password))
-				{
+					customer.customerPage(sc, user.getEmail());
+
+					break;
+				case 2:
 					GMSGymOwnerClient gymOwner = new GMSGymOwnerClient();
-					gymOwner.gymOwnerPage(sc, username);
-				}
-				else
-				{
-					System.out.println(ANSI_RED + "Invalid GymOwner" + ANSI_RESET);
-					login();
-				}
-				break;
-		    case "Admin":
-				if(check_Admin_Authentication(userBusiness,username,password)) {
+					gymOwner.gymOwnerPage(sc, user.getEmail());
+					break;
+				case 1:
 					GMSAdminClient admin = new GMSAdminClient();
 					admin.adminPage(sc);
-				}
-				else
-					System.out.println(ANSI_RED + "Invalid Admin" + ANSI_RESET);
-					login();
-				break;
+					break;
+			}
+
+		} catch(UserNotFoundException ue){
+			System.out.println(ANSI_RED + ue.getMessage() + ANSI_RESET);
+			mainPage();
 		}
 	}
 	

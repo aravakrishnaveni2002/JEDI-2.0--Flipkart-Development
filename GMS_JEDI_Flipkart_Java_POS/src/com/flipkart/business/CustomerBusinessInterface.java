@@ -4,6 +4,7 @@ import com.flipkart.bean.BookedSlot;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCenter;
 import com.flipkart.bean.Slot;
+import com.flipkart.exception.NoDataFoundException;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface CustomerBusinessInterface {
      * @param customerEmail The Email of the customer
      * @param date The date of the slot
      */
-    public void bookSlot(int gymCenterId,int slotId,String date,String customerEmail);
+    public boolean bookSlot(int gymCenterId,int slotId,String date,String customerEmail) throws NoDataFoundException;
 
     /**
      * Checks if a customer has already booked a slot at a specified slot time and date.
@@ -45,7 +46,7 @@ public interface CustomerBusinessInterface {
      * @param customerEmail The email of the customer
      * @param bookingId The ID of the booking to cancel
      */
-    public void cancelSlot(int bookingId,String customerEmail);
+    public boolean cancelSlot(int bookingId,String customerEmail) throws NoDataFoundException;
 
     /**
      * Fetches the booked slots for a customer based on the customer's email.

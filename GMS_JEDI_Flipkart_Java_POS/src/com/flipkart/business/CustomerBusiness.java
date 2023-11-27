@@ -7,6 +7,8 @@ import com.flipkart.bean.GymCenter;
 import com.flipkart.bean.Slot;
 import com.flipkart.bean.BookedSlot;
 import com.flipkart.DAO.*;
+import com.flipkart.exception.NoDataFoundException;
+
 import java.util.*;
 
 /**
@@ -15,7 +17,10 @@ import java.util.*;
 public class CustomerBusiness implements CustomerBusinessInterface {
 	
 	CustomerDao customerDao = new CustomerDaoImpl();
-
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 	/**
 	 * Fetches the details of a customer based on the customer ID.
 	 * @param customerEmail The email of the customer
@@ -40,13 +45,21 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 	 * @param date The date of the slot
 	 * @param customerEmail The email of the customer
 	 */
-	public void bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
+	public boolean bookSlot(int gymCenterId,int slotId,String date,String customerEmail) throws NoDataFoundException{
 		BookedSlot b = isAlreadyBooked(slotId,customerEmail,date);
 		if(b != null) {
-			cancelSlot(b.getId(),customerEmail);
+			try{
+				cancelSlot(b.getId(),customerEmail);
+			} catch (NoDataFoundException ne){
+				ne.getMessage();
+			}
 		}
 
-        customerDao.bookSlot(gymCenterId,slotId,date,customerEmail);
+        if(customerDao.bookSlot(gymCenterId,slotId,date,customerEmail) == true) {
+			System.out.println(ANSI_GREEN + "Slot Booked" + ANSI_RESET);
+			return true;
+		};
+		throw new NoDataFoundException();
 	}
 
 	/**
@@ -66,9 +79,14 @@ public class CustomerBusiness implements CustomerBusinessInterface {
 	 * @param customerEmail The email of the customer
 	 * @param bookingId The ID of the booking to cancel
 	 */
-	public void cancelSlot(int bookingId,String customerEmail) {
-		System.out.println("Cancelling Slot");
-		customerDao.cancelSlot(bookingId , customerEmail);
+	public boolean cancelSlot(int bookingId,String customerEmail) throws NoDataFoundException{
+
+		if(customerDao.cancelSlot(bookingId , customerEmail) == true) {
+			System.out.println(ANSI_GREEN + "Slot Cancelled" + ANSI_RESET);
+			return true;
+		}
+		throw new NoDataFoundException();
+
 	}
 
 	/**

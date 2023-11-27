@@ -4,6 +4,7 @@ import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymOwner;
 import com.flipkart.bean.User;
 import com.flipkart.constant.SQLQueries;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.DBUtils;
 
 import java.sql.*;
@@ -69,6 +70,26 @@ public class UserDaoImpl implements UserDao{
         } catch (Exception excep){
             excep.printStackTrace();
         }
+    }
+
+    public User authenticateUser(User user){
+        try{
+            connection = DBUtils.getConnection();
+            statement = connection.prepareStatement(SQLQueries.AUTHENTICATE_USER);
+            statement.setString(1, user.getEmail());
+            statement.setString(2,user.getPassword());
+            statement.setInt(3,user.getRoleId());
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                return user;
+            }
+
+        } catch (SQLException sqlExcep){
+            System.out.println(sqlExcep);
+        } catch (Exception excep){
+            excep.printStackTrace();
+        }
+        return null;
     }
 
     public List<User> viewAllCustomers(){

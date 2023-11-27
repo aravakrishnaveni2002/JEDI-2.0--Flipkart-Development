@@ -98,8 +98,8 @@ public class CustomerDaoImpl implements CustomerDao {
 		return allBookings;
 	}
 	
-	public void bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
-
+	public boolean bookSlot(int gymCenterId,int slotId,String date,String customerEmail) {
+		int rs = 0;
 		try {
 			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.INSERT_BOOKEDSLOT);
@@ -108,7 +108,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			statement.setString(3,customerEmail);
 			statement.setString(4,date);
 			statement.setInt(5,1);
-			statement.executeUpdate();
+			rs = statement.executeUpdate();
 			statement.close();
 
 		} catch(SQLException sqlExcep) {
@@ -116,6 +116,8 @@ public class CustomerDaoImpl implements CustomerDao {
 		} catch(Exception excep) {
 			excep.printStackTrace();
 		}
+		if(rs == 1) return true;
+		return false;
 	}
 	
 	public BookedSlot isAlreadyBooked(int slotId,String customerEmail,String date) {
@@ -147,8 +149,8 @@ public class CustomerDaoImpl implements CustomerDao {
 		return null;
 	}
 	
-	public void cancelSlot(int bookingId,String customerEmail) {
-
+	public boolean cancelSlot(int bookingId,String customerEmail) {
+		int rs = 0;
 		try {
 			connection = DBUtils.getConnection();
 			statement = connection.prepareStatement(SQLQueries.CANCEL_BOOKING);
@@ -156,11 +158,13 @@ public class CustomerDaoImpl implements CustomerDao {
 			statement.setInt(2, bookingId);
 			statement.setString(3, customerEmail);
 
-			statement.executeUpdate();
+			rs = statement.executeUpdate();
 		} catch(SQLException sqlExcep) {
 			System.out.println(sqlExcep);
 		} catch(Exception excep) {
 			excep.printStackTrace();
 		}
+		if(rs == 0) return false;
+		return true;
 	}
 }

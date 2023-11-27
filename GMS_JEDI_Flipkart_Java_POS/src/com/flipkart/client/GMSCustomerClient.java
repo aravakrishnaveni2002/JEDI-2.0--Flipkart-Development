@@ -4,6 +4,8 @@
 package com.flipkart.client;
 import com.flipkart.business.*;
 import com.flipkart.bean.*;
+import com.flipkart.exception.NoDataFoundException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -59,7 +61,13 @@ public class GMSCustomerClient {
 //		String formattedDate = currentTime.format(myFormat);
 		System.out.println("Enter the date in DD-MM-YYYY format:");
 		String date = sc.next();
-		customerBusiness.bookSlot(gymCentreId,slotId,date,customerEmail);
+		try {
+			customerBusiness.bookSlot(gymCentreId, slotId, date, customerEmail);
+		}
+		catch(NoDataFoundException ne)
+		{
+			System.out.println(ne.getMessage());
+		}
 		System.out.println("Enter Card number:");
 		Long cardNumber = sc.nextLong();
 		System.out.println("Enter CVV:");
@@ -70,16 +78,21 @@ public class GMSCustomerClient {
 
 	}
 	
-	public void cancelBookedSlot(Scanner sc,String customerEmail)
-	{
+	public void cancelBookedSlot(Scanner sc,String customerEmail) throws Exception{
 		List<BookedSlot> registeredBookings = customerBusiness.viewAllBookings(customerEmail);
 		System.out.println("Enter the BookedSlotId");
 		int id = sc.nextInt();
 		for(int i=0;i<registeredBookings.size();i++)
 		{
 			BookedSlot obj = registeredBookings.get(i);
-			if(obj.getId() == id)
-				customerBusiness.cancelSlot(id, customerEmail);
+			if(obj.getId() == id){
+				try {
+					customerBusiness.cancelSlot(id, customerEmail);
+				} catch (NoDataFoundException ne){
+					System.out.println(ANSI_RED+ ne.getMessage() + ANSI_RESET);
+				}
+			}
+
 		}
 	}
 	

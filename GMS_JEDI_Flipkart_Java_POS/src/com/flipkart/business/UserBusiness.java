@@ -7,6 +7,7 @@ import com.flipkart.DAO.UserDaoImpl;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymOwner;
 import com.flipkart.bean.User;
+import com.flipkart.exception.UserNotFoundException;
 
 import java.util.*;
 
@@ -55,6 +56,14 @@ public class UserBusiness implements UserBusinessInterface{
 	{
 //		System.out.println("Listing all Gym Owners");
 		return userDaoImpl.viewAllGymOwners();
+	}
+
+	public User authenticateUser(User user) throws UserNotFoundException {
+		if(userDaoImpl.authenticateUser(user) != null) {
+			System.out.println(ANSI_GREEN + "Logged in Successfully" + ANSI_RESET);
+			return user;
+		}
+		throw new UserNotFoundException();
 	}
 
 	/**
