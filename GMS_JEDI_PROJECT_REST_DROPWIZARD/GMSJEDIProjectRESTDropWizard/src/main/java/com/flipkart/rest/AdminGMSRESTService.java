@@ -63,27 +63,29 @@ public class AdminGMSRESTService {
 
     @Path("approveGym")
     @PUT
-    public static String approveGymRegistration(@QueryParam("gymId") int gymId){
+    @Produces("application/json")
+    public static Response approveGymRegistration(@QueryParam("gymId") int gymId){
 
         try{
             AdminBusinessInterface adminBusiness = new AdminBusiness();
             adminBusiness.approveGymRegistration(gymId);
-            return "Gym Approved!";
+            return Response.ok().entity("Gym Approved!").build();
         }catch(Exception exception){
-            return  exception.getMessage();
+            return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();
         }
     }
 
     @Path("approveGymOwner")
     @PUT
-    public static String approveGymOwnerRegistration(@QueryParam("ownerId") int ownerId){
+    @Produces("application/json")
+    public static Response approveGymOwnerRegistration(@QueryParam("ownerId") int ownerId){
 
         try{
             AdminBusinessInterface adminBusiness = new AdminBusiness();
             adminBusiness.approveGymOwnerRegistration(ownerId);
-            return "GymOwner Approved!";
+            return Response.ok().entity("GymOwner Approved!").build();
         }catch(Exception exception){
-            return  exception.getMessage();
+            return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();
         }
     }
 

@@ -27,6 +27,8 @@ public class App extends Application<Configuration>
         LOGGER.info("Registering REST resources");
       //  e.jersey().register(new EmployeeRESTController(e.getValidator()));
         e.jersey().register(new AdminGMSRESTService());
+        e.jersey().register(new GymOwnerGMSRESTService());
+        e.jersey().register(new UserGMSRESTService());
 //        e.jersey().register(new EmployeeRESTController(e.getValidator()));
     }
  
