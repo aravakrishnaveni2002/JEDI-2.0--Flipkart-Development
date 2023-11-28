@@ -1,33 +1,52 @@
 package com.flipkart.rest;
 
+import javax.ws.rs.*;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+import com.flipkart.business.*;
+import com.flipkart.bean.*;
 @Path("/v1/customer")
 public class CustomerGMSRESTService {
-    CustomerBusinessInterface customerBusiness = new CustomerBusiness();
+
     @Path("getCustomerDetails")
     @GET
     @Produces("application/json")
     public static Response getCustomerDetails(@QueryParam("customerEmail") String customerEmail) {
-        return Response.ok(customerBusiness.getCustomerDetails(customerEmail)).build();
+        CustomerBusinessInterface customerBusiness = new CustomerBusiness();
+        try{
+            return Response.ok().entity(customerBusiness.getCustomerDetails(customerEmail)).build();
+        } catch(Exception exception){
+            return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();
+        }
+
     }
-    @Path("allgyms")
+    @Path("allGyms")
     @GET
     @Produces("application/json")
     public static Response viewAllGymCentres() {
-        try{return Response.ok(customerBusiness.viewAllGymCentres()).build();}
-        catch(Exception exception){
+        CustomerBusinessInterface customerBusiness = new CustomerBusiness();
+        try{
+            return Response.ok().entity(customerBusiness.viewAllGymCentres()).build();
+        } catch(Exception exception){
             return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();
         }
     }
-    @Path("bookslots")
+    @Path("bookSlot")
     @POST
     @Produces("application/json")
     public static Response bookSlot(@QueryParam("gymCenterId") int gymCenterId,@QueryParam("slotId") int slotId,@QueryParam("date") String date,@QueryParam("customerEmail") String customerEmail){
+        CustomerBusinessInterface customerBusiness = new CustomerBusiness();
         BookedSlot b = customerBusiness.isAlreadyBooked(slotId,customerEmail,date);
         if(b != null) {
             try{
                 return Response.ok(customerBusiness.cancelSlot(b.getId(),customerEmail)).build();
-            } catch (NoDataFoundException ne){
-                return Response.status(Response.Status.UNAUTHORIZED).entity(ne.getMessage()).build();
+            } catch (Exception exception){
+                return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();
             }
         }
 
@@ -41,17 +60,24 @@ public class CustomerGMSRESTService {
         }
         return Response.ok().entity("No Data Found").build();
     }
-    @Path("isBooked")
+    @Path("isAlreadyBooked")
     @GET
     @Produces("application/json")
     public static Response isAlreadyBooked(@QueryParam("slotId") int slotId,@QueryParam("customerEmail") String customerEmail,@QueryParam("date") String date) {
-        return Response.ok(customerBusiness.isAlreadyBooked(slotId,customerEmail,date)).build();
+        CustomerBusinessInterface customerBusiness = new CustomerBusiness();
+        try{
+            return Response.ok().entity(customerBusiness.isAlreadyBooked(slotId,customerEmail,date)).build();
+        } catch (Exception exception){
+            return Response.ok(customerBusiness.isAlreadyBooked(slotId,customerEmail,date)).build();
+        }
+
 
     }
-    @Path("cancelslot")
+    @Path("cancelSlot")
     @DELETE
     @Produces("application/json")
     public static Response cancelSlot(@QueryParam("bookingId") int bookingId,@QueryParam("customerEmail") String customerEmail) {
+        CustomerBusinessInterface customerBusiness = new CustomerBusiness();
         try{
             if(customerBusiness.cancelSlot(bookingId , customerEmail) == true) {
                 return Response.ok().entity("Slot Cancelled").build();
@@ -65,7 +91,7 @@ public class CustomerGMSRESTService {
     @GET
     @Produces("application/json")
     public static Response viewAllBookings(@QueryParam("customerEmail") String customerEmail) {
-
+        CustomerBusinessInterface customerBusiness = new CustomerBusiness();
         try{
             return Response.ok(customerBusiness.viewAllBookings(customerEmail)).build();
         }

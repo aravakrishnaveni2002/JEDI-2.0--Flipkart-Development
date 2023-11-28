@@ -23,17 +23,19 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		try {
 			connection = DBUtils.getConnection();
-			System.out.println("Fetching Cutomer deatils...");
-			statement = connection.prepareStatement(SQLQueries.FETCH_GYMOWNER_DETAILS);		    
+			System.out.println("Fetching Customer deatils...");
+			statement = connection.prepareStatement(SQLQueries.FETCH_CUSTOMER_DETAILS);
 		    statement.setString(1,customerEmail);
 		    
 		    ResultSet rs = statement.executeQuery();
-		    
-		    customer.setId(rs.getInt("id"));
-		    customer.setEmail(rs.getString("email"));
-		    customer.setAddress(rs.getString("address"));
-		    customer.setName(rs.getString("name"));
-		    customer.setPhone(rs.getInt("phone"));
+		    while(rs.next()){
+				customer.setId(rs.getInt("id"));
+				customer.setEmail(rs.getString("email"));
+				customer.setAddress(rs.getString("address"));
+				customer.setName(rs.getString("name"));
+				customer.setPhone(rs.getInt("phone"));
+			}
+
 		    
 	    } catch(SQLException sqlExcep) {
 		       System.out.println(sqlExcep);

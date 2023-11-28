@@ -29,6 +29,7 @@ public class App extends Application<Configuration>
         e.jersey().register(new AdminGMSRESTService());
         e.jersey().register(new GymOwnerGMSRESTService());
         e.jersey().register(new UserGMSRESTService());
+        e.jersey().register(new CustomerGMSRESTService());
 //        e.jersey().register(new EmployeeRESTController(e.getValidator()));
     }
  

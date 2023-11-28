@@ -21,7 +21,7 @@ public class GymOwnerGMSRESTService {
     public static Response getGymOwnerDetails(@QueryParam("gymOwnerEmail") String gymOwnerEmail){
         GymOwnerBusinessInterface gymOwnerBusiness = new GymOwnerBusiness();
         try{
-            return Response.ok(gymOwnerBusiness.getGymOwnerDetails(gymOwnerEmail)).build();
+            return Response.ok().entity(gymOwnerBusiness.getGymOwnerDetails(gymOwnerEmail)).build();
         }
         catch(Exception exception){
             return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();

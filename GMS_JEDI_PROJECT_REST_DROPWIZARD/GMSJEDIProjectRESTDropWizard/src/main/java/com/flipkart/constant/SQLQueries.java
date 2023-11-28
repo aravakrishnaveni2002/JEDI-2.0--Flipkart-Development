@@ -11,6 +11,8 @@ public class SQLQueries {
 	public static final String FETCH_ALL_APPROVED_GYMS = "SELECT * FROM GymCenter WHERE isApproved=1";
 	public static final String FETCH_ALL_SLOTS_OF_GYM = "SELECT * FROM AllSlots WHERE gymCenterId=?";
 	public static final String FETCH_GYMOWNER_DETAILS = "SELECT * FROM GymOwner WHERE email=?";
+
+	public static final String FETCH_CUSTOMER_DETAILS = "SELECT * FROM Customer WHERE email=?";
 	public static final String FETCH_GYMOWNER_ALL_GYMS = "SELECT * FROM GymCenter WHERE gymOwnerEmail=?";
 	public static final String INSERT_GYM = "INSERT INTO GymCenter (gymOwnerEmail, name, location, noOfSeats, isApproved) values (?, ?, ?, ?, ?)";
 
@@ -22,7 +24,7 @@ public class SQLQueries {
 	public static final String CHECK_GYMOWNER_APPROVEVAL = "SELECT * FROM GymOwner WHERE email=? and isApproved=1";
 	public static final String CHECK_GYMCENTER_APPROVEVAL = "SELECT * FROM GymCenter WHERE id=? and isApproved=1";
 	public static final String FETCH_ALL_BOOKEDSLOTS = "SELECT * FROM BookedSlot WHERE customerEmail=? and isActive=?";
-	public static final String CHECK_SLOT_ALREADY_BOOKED = "SELECT * FROM BookedSlot WHERE slotId=? and customerEmail=? and date=?";
+	public static final String CHECK_SLOT_ALREADY_BOOKED = "SELECT * FROM BookedSlot WHERE slotId=? and customerEmail=? and date=? and isActive=1";
 	public static final String CANCEL_BOOKING = "UPDATE BookedSlot SET isActive = ? where id = ? and customerEmail = ?";
 	public static final String FETCH_PENDING_GYM_CENTERS = "SELECT * FROM GymCenter WHERE isApproved = 0";
 	public static final String FETCH_PENDING_OR_APPROVED_GYM_OWNERS = "SELECT * FROM GymOwner WHERE isApproved = ?";
