@@ -51,7 +51,7 @@ public class GMSAdminClient {
 		System.out.printf("%-15s\t", "Name");
 		System.out.printf("%-15s\t", "Location");
 		System.out.printf("%-15s\t", "No of Seats");
-		System.out.printf("%-15s\t", "Email");
+		System.out.printf("%-15s\t", "GymOwnerEmail");
 		System.out.printf("%-15s\t", "IsApproved");
 		System.out.println();
 		for(GymCenter gymCenter: gyms) {
@@ -118,7 +118,7 @@ public class GMSAdminClient {
 		System.out.printf("%-15s\t", "Name");
 		System.out.printf("%-15s\t", "Location");
 		System.out.printf("%-15s\t", "No of Seats");
-		System.out.printf("%-15s\t", "Email");
+		System.out.printf("%-15s\t", "GymOwnerEmail");
 		System.out.printf("%-15s\t", "IsApproved");
 		System.out.println();
 		for(GymCenter gymCenter: gyms) {

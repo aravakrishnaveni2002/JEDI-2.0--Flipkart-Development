@@ -122,14 +122,17 @@ public class GMSCustomerClient {
 	public void viewCatalog() {
 		List<GymCenter> allApprovedGyms = customerBusiness.viewAllGymCentres();
 		System.out.printf("%-15s\t","Id");
+		System.out.printf("%-15s\t","Name");
 		System.out.printf("%-15s\t","Location");
 		System.out.printf("%-15s\t","No of Seats");
 		System.out.println();
 		for(GymCenter gym: allApprovedGyms) {
 			System.out.printf("%-15s\t", gym.getId());
+			System.out.printf("%-15s\t",gym.getName());
 			System.out.printf("%-15s\t", gym.getLocation());
 			System.out.printf("%-15s\t", gym.getNoOfSeats());
 			System.out.printf("%-15s\t", "Yes");
+			System.out.println();
 			System.out.println("Listing all available slots");
 			List<Slot> allAvilableSlots = gymOwnerBusiness.viewAllSlots(gym.getId());
 			System.out.printf("%-15s\t","Id");
