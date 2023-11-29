@@ -16,10 +16,10 @@ public class CustomerGMSRESTService {
     @Path("getCustomerDetails")
     @GET
     @Produces("application/json")
-    public static Response getCustomerDetails(@QueryParam("customerEmail") String customerEmail) {
+    public static Response getCustomerDetails(CustomerRequest customerRequest) {
         CustomerBusinessInterface customerBusiness = new CustomerBusiness();
         try{
-            return Response.ok().entity(customerBusiness.getCustomerDetails(customerEmail)).build();
+            return Response.ok().entity(customerBusiness.getCustomerDetails(customerRequest.getEmail())).build();
         } catch(Exception exception){
             return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();
         }
@@ -39,19 +39,19 @@ public class CustomerGMSRESTService {
     @Path("bookSlot")
     @POST
     @Produces("application/json")
-    public static Response bookSlot(@QueryParam("gymCenterId") int gymCenterId,@QueryParam("slotId") int slotId,@QueryParam("date") String date,@QueryParam("customerEmail") String customerEmail){
+    public static Response bookSlot(CustomerRequest customerRequest){
         CustomerBusinessInterface customerBusiness = new CustomerBusiness();
-        BookedSlot b = customerBusiness.isAlreadyBooked(slotId,customerEmail,date);
+        BookedSlot b = customerBusiness.isAlreadyBooked(customerRequest.getSlotId(), customerRequest.getEmail(), customerRequest.getDate());
         if(b != null) {
             try{
-                return Response.ok(customerBusiness.cancelSlot(b.getId(),customerEmail)).build();
+                return Response.ok(customerBusiness.cancelSlot(b.getId(), customerRequest.getEmail())).build();
             } catch (Exception exception){
                 return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();
             }
         }
 
         try {
-            if(customerBusiness.bookSlot(gymCenterId, slotId, date, customerEmail) == true) {
+            if(customerBusiness.bookSlot(customerRequest.getGymCenterId(), customerRequest.getSlotId(), customerRequest.getDate(), customerRequest.getEmail()) == true) {
 
                return Response.ok().entity("Slot Booked").build();
             }
@@ -63,12 +63,12 @@ public class CustomerGMSRESTService {
     @Path("isAlreadyBooked")
     @GET
     @Produces("application/json")
-    public static Response isAlreadyBooked(@QueryParam("slotId") int slotId,@QueryParam("customerEmail") String customerEmail,@QueryParam("date") String date) {
+    public static Response isAlreadyBooked(CustomerRequest customerRequest) {
         CustomerBusinessInterface customerBusiness = new CustomerBusiness();
         try{
-            return Response.ok().entity(customerBusiness.isAlreadyBooked(slotId,customerEmail,date)).build();
+            return Response.ok().entity(customerBusiness.isAlreadyBooked(customerRequest.getSlotId(), customerRequest.getEmail(), customerRequest.getDate())).build();
         } catch (Exception exception){
-            return Response.ok(customerBusiness.isAlreadyBooked(slotId,customerEmail,date)).build();
+            return Response.ok(customerBusiness.isAlreadyBooked(customerRequest.getSlotId(), customerRequest.getEmail(), customerRequest.getDate())).build();
         }
 
 
@@ -76,10 +76,10 @@ public class CustomerGMSRESTService {
     @Path("cancelSlot")
     @DELETE
     @Produces("application/json")
-    public static Response cancelSlot(@QueryParam("bookingId") int bookingId,@QueryParam("customerEmail") String customerEmail) {
+    public static Response cancelSlot(CustomerRequest customerRequest) {
         CustomerBusinessInterface customerBusiness = new CustomerBusiness();
         try{
-            if(customerBusiness.cancelSlot(bookingId , customerEmail) == true) {
+            if(customerBusiness.cancelSlot(customerRequest.getBookingId(), customerRequest.getEmail()) == true) {
                 return Response.ok().entity("Slot Cancelled").build();
             }
         } catch(Exception exception){
@@ -90,10 +90,10 @@ public class CustomerGMSRESTService {
     @Path("viewAllBookings")
     @GET
     @Produces("application/json")
-    public static Response viewAllBookings(@QueryParam("customerEmail") String customerEmail) {
+    public static Response viewAllBookings(CustomerRequest customerRequest) {
         CustomerBusinessInterface customerBusiness = new CustomerBusiness();
         try{
-            return Response.ok(customerBusiness.viewAllBookings(customerEmail)).build();
+            return Response.ok(customerBusiness.viewAllBookings(customerRequest.getEmail())).build();
         }
         catch(Exception exception){
             return Response.status(Response.Status.UNAUTHORIZED).entity(exception.getMessage()).build();

@@ -18,10 +18,19 @@ public class UserGMSRESTService
     @POST
     @Produces("application/json")
     @Consumes(MediaType.APPLICATION_JSON)
-    public static Response registerCustomer(Customer customer){
+    public static Response registerCustomer(CustomerRequest customerRequest){
         UserBusinessInterface userBusiness = new UserBusiness();
         try {
-//            userBusiness.registerUser(user);
+            Customer customer = new Customer();
+            User user = new User();
+            customer.setAddress(customerRequest.getAddress());
+            customer.setEmail(customerRequest.getEmail());
+            customer.setName(customerRequest.getName());
+            customer.setPhone(customerRequest.getPhone());
+            user.setEmail(customerRequest.getEmail());
+            user.setPassword(customerRequest.getPassword());
+            user.setRoleId(3);
+            userBusiness.registerUser(user);
             userBusiness.registerCustomer(customer);
         } catch (Exception e) {
             return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
@@ -33,10 +42,21 @@ public class UserGMSRESTService
     @POST
     @Produces("application/json")
     @Consumes(MediaType.APPLICATION_JSON)
-    public static Response registerGymOwner(GymOwner gymOwner){
+    public static Response registerGymOwner(GymOwnerRequest gymOwnerRequest){
         UserBusinessInterface userBusiness = new UserBusiness();
         try {
-//            userBusiness.registerUser(user);
+            GymOwner gymOwner = new GymOwner();
+            User user = new User();
+            gymOwner.setName(gymOwnerRequest.getName());
+            gymOwner.setAddress(gymOwnerRequest.getAddress());
+            gymOwner.setGstNumber(gymOwnerRequest.getGstNumber());
+            gymOwner.setEmail(gymOwner.getEmail());
+            gymOwner.setPhone(gymOwnerRequest.getPhone());
+            gymOwner.setApproved(gymOwnerRequest.isApproved());
+            user.setEmail(gymOwnerRequest.getEmail());
+            user.setPassword(gymOwnerRequest.getPassword());
+            user.setRoleId(2);
+            userBusiness.registerUser(user);
             userBusiness.registerGymOwner(gymOwner);
         } catch (Exception e) {
             return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
